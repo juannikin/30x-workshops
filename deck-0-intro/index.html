@@ -6,6 +6,7 @@
   <title>Fundamentos — AI-First GTM: Del Concepto a la Ejecucion</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
   <link rel="stylesheet" href="../shared/theme.css">
+  <link rel="stylesheet" href="../shared/animations.css">
 </head>
 <body>
   <div class="reveal">
@@ -86,6 +87,26 @@
             <p class="text-small text-muted mt-1">Hoy vas a aprender a construir tu propio motor de GTM con IA. No teoria — vas a salir con algo funcionando.</p>
           </div>
         </div>
+      </section>
+
+      
+      <!-- SLIDE: Enrichment table animation -->
+      <section data-footer="GrowthMasters · 30x Workshop · Fundamentos">
+        <h2>Esto es lo que tu AI hace en 30 segundos</h2>
+        <div class="enrich-progress"></div>
+        <table class="enrich-table">
+          <thead>
+            <tr><th>Empresa</th><th>Headcount</th><th>Funding</th><th>Tech Stack</th><th>Hiring</th><th>Score</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Rappi</strong></td><td>5,200</td><td>Series F · $2.1B</td><td>React, AWS, Kafka</td><td style="color:#27AE60;">&#10003; 12 roles</td><td><span class="enrich-score tier-a">92 · A</span></td></tr>
+            <tr><td><strong>Nubank</strong></td><td>8,000</td><td>Public · IPO 2021</td><td>Clojure, AWS, Spark</td><td style="color:#27AE60;">&#10003; 8 roles</td><td><span class="enrich-score tier-a">88 · A</span></td></tr>
+            <tr><td><strong>Kavak</strong></td><td>3,400</td><td>Series E · $900M</td><td>Python, GCP, Redis</td><td style="color:#F39C12;">&#x25CB; 3 roles</td><td><span class="enrich-score tier-b">76 · B</span></td></tr>
+            <tr><td><strong>Platzi</strong></td><td>800</td><td>Series C · $62M</td><td>Next.js, AWS</td><td style="color:#D53429;">&#x2717; No hiring</td><td><span class="enrich-score tier-c">61 · C</span></td></tr>
+            <tr><td><strong>Clara</strong></td><td>600</td><td>Series B · $150M</td><td>React, PostgreSQL</td><td style="color:#27AE60;">&#10003; 5 roles</td><td><span class="enrich-score tier-b">79 · B</span></td></tr>
+          </tbody>
+        </table>
+        <p class="text-center text-small text-muted" style="margin-top:0.8em;">Enrichment automatico via <img src="../assets/logos/tools/clay.png" class="no-shadow" style="height:14px;vertical-align:middle;" alt="Clay"> Clay + <img src="../assets/logos/tools/exa.png" class="no-shadow" style="height:14px;vertical-align:middle;" alt="Exa"> Exa · Scoring con tu modelo de pesos personalizado</p>
       </section>
 
       <!-- ============================================

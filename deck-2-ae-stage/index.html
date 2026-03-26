@@ -6,6 +6,7 @@
   <title>Workshop 2 — Tu AE AI: De Meeting a Cierre</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
   <link rel="stylesheet" href="../shared/theme.css">
+  <link rel="stylesheet" href="../shared/animations.css">
 </head>
 <body>
   <div class="reveal">
@@ -207,6 +208,37 @@
   talk tracks sugeridos, y deal history."</span>
         </div>
         <div style="text-align:center;"><img src="../assets/deck-assets/14-inline.jpg" class="screenshot-context" alt="Brief en Slack"><p class="screenshot-caption">Asi se ve un brief automatico entregado en Slack</p></div>
+      </section>
+
+      
+      <!-- SLIDE: CRM scoring animation -->
+      <section data-footer="GrowthMasters · 30x Workshop 2 · AE AI Stage">
+        <h2>Scoring en tiempo real — asi se ve en tu CRM</h2>
+        <div style="display:flex; gap:2em; align-items:flex-start; justify-content:center;">
+          <div class="crm-sim">
+            <div class="crm-header"><h4>DataFlow Solutions</h4><span class="crm-deal-stage">Discovery</span></div>
+            <div class="crm-body">
+              <div class="crm-field"><span class="crm-field-label">Fit de Cuenta</span><span class="crm-field-value"><span class="crm-score-badge score-a">A · 92</span></span></div>
+              <div class="crm-field"><span class="crm-field-label">Fit Individual</span><span class="crm-field-value"><span class="crm-score-badge score-b">B · 78</span></span></div>
+              <div class="crm-field"><span class="crm-field-label">Intent Signals</span><span class="crm-field-value">Visito pricing, descargo whitepaper</span></div>
+              <div class="crm-field"><span class="crm-field-label">Disclosed</span><span class="crm-field-value">Budget: $15-20k/mo · Timeline: Q2</span></div>
+              <div class="crm-field"><span class="crm-field-label">Champion</span><span class="crm-field-value">Sarah Chen, VP Marketing</span></div>
+              <div class="crm-field"><span class="crm-field-label">Competidores</span><span class="crm-field-value">6sense (pricing concern)</span></div>
+              <div class="crm-health"><span class="crm-health-dot green"></span><span class="crm-field-value" style="color:#27AE60;">Deal Health: Activo</span></div>
+            </div>
+          </div>
+          <div style="font-size:0.65em; max-width:280px;">
+            <h3 style="font-size:1.1em;">Lo que hizo el AI:</h3>
+            <ul class="check-list" style="font-size:0.95em;">
+              <li>Extrajo signals de la ultima call</li>
+              <li>Actualizo scoring automaticamente</li>
+              <li>Identifico champion</li>
+              <li>Detecto mencion de competidor</li>
+              <li>Clasifico deal health</li>
+            </ul>
+            <p class="text-small text-muted mt-1">Todo automatico. El AE solo revisa.</p>
+          </div>
+        </div>
       </section>
 
       <!-- SLIDE 8 — Pilar 2: Decks personalizados -->

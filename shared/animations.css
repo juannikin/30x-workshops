@@ -1,0 +1,503 @@
+/* ==========================================================================
+   Slide Animations — Interactive UI Simulations
+   ========================================================================== */
+
+/* ---------- Shared animation utilities ---------- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fillRight {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(39, 174, 96, 0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes highlightText {
+  from { background-size: 0 100%; }
+  to { background-size: 100% 100%; }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Trigger animations only when slide is current */
+.reveal .slides section.present .anim-trigger { animation-play-state: running; }
+.reveal .slides section:not(.present) .anim-trigger { animation-play-state: paused; }
+
+/* ==========================================================================
+   ANIMATION 1: Enrichment Table (Clay-style)
+   ========================================================================== */
+.enrich-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.6em;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 6px 6px 9px rgba(0,0,0,0.15);
+}
+
+.enrich-table thead {
+  background: #1B2A4A;
+  color: #fff;
+}
+
+.enrich-table th {
+  padding: 0.7em 0.8em;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+.enrich-table td {
+  padding: 0.6em 0.8em;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+}
+
+.enrich-table tr:nth-child(even) td {
+  background: #f8f9fa;
+}
+
+/* Each row fades in with delay */
+.enrich-table tbody tr {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.enrich-table tbody tr:nth-child(1) { animation-delay: 0.3s; }
+.enrich-table tbody tr:nth-child(2) { animation-delay: 0.8s; }
+.enrich-table tbody tr:nth-child(3) { animation-delay: 1.3s; }
+.enrich-table tbody tr:nth-child(4) { animation-delay: 1.8s; }
+.enrich-table tbody tr:nth-child(5) { animation-delay: 2.3s; }
+
+/* Score cells animate with color */
+.enrich-score {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.95em;
+  opacity: 0;
+  animation: countUp 0.4s ease forwards;
+}
+
+.enrich-score.tier-a { background: #27AE60; color: #fff; }
+.enrich-score.tier-b { background: #2ECC71; color: #fff; }
+.enrich-score.tier-c { background: #F39C12; color: #fff; }
+
+.enrich-table tbody tr:nth-child(1) .enrich-score { animation-delay: 0.8s; }
+.enrich-table tbody tr:nth-child(2) .enrich-score { animation-delay: 1.3s; }
+.enrich-table tbody tr:nth-child(3) .enrich-score { animation-delay: 1.8s; }
+.enrich-table tbody tr:nth-child(4) .enrich-score { animation-delay: 2.3s; }
+.enrich-table tbody tr:nth-child(5) .enrich-score { animation-delay: 2.8s; }
+
+/* Enrichment progress bar */
+.enrich-progress {
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange-start), var(--orange-end));
+  animation: fillRight 3s ease forwards;
+  border-radius: 2px;
+  margin-bottom: 0.5em;
+}
+
+/* ==========================================================================
+   ANIMATION 2: Email Sequence Generating
+   ========================================================================== */
+.email-sim {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 0.65em;
+}
+
+.email-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1em 1.2em;
+  margin-bottom: 0.6em;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.email-card:nth-child(1) { animation-delay: 0.5s; }
+.email-card:nth-child(2) { animation-delay: 1.5s; }
+.email-card:nth-child(3) { animation-delay: 2.5s; }
+
+.email-card .email-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+  color: #999;
+  font-size: 0.85em;
+}
+
+.email-card .email-subject {
+  font-weight: 700;
+  color: #1B2A4A;
+  margin-bottom: 0.4em;
+}
+
+.email-card .email-body {
+  color: #555;
+  line-height: 1.5;
+}
+
+.email-var {
+  background: linear-gradient(90deg, rgba(230, 126, 34, 0.15), rgba(255, 124, 9, 0.15));
+  color: var(--orange-start);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-weight: 600;
+  animation: highlightText 0.3s ease forwards;
+  background-repeat: no-repeat;
+}
+
+.email-step-label {
+  font-size: 0.55em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--orange-start);
+  margin-bottom: 0.3em;
+}
+
+/* ==========================================================================
+   ANIMATION 3: Slack Agent Reporting
+   ========================================================================== */
+.slack-sim {
+  max-width: 550px;
+  margin: 0 auto;
+  background: #1a1d21;
+  border-radius: 10px;
+  padding: 1em 1.2em;
+  font-size: 0.6em;
+  color: #d1d2d3;
+  box-shadow: 6px 6px 9px rgba(0,0,0,0.3);
+}
+
+.slack-channel {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1em;
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid #333;
+  margin-bottom: 0.8em;
+}
+
+.slack-channel span {
+  color: #999;
+  font-weight: 400;
+  font-size: 0.8em;
+}
+
+.slack-msg {
+  display: flex;
+  gap: 0.6em;
+  margin-bottom: 0.8em;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.slack-msg:nth-child(2) { animation-delay: 0.5s; }
+.slack-msg:nth-child(3) { animation-delay: 1.8s; }
+.slack-msg:nth-child(4) { animation-delay: 3.0s; }
+
+.slack-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, var(--orange-start), var(--orange-end));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75em;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.slack-msg-content {
+  flex: 1;
+}
+
+.slack-msg-author {
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.2em;
+}
+
+.slack-msg-author .slack-time {
+  font-weight: 400;
+  color: #666;
+  font-size: 0.8em;
+  margin-left: 0.5em;
+}
+
+.slack-msg-text {
+  line-height: 1.5;
+}
+
+.slack-emoji {
+  font-size: 1.1em;
+}
+
+.slack-metric {
+  display: inline-block;
+  background: rgba(39, 174, 96, 0.15);
+  color: #27AE60;
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.slack-typing {
+  color: #999;
+  font-style: italic;
+  font-size: 0.85em;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards 0.2s;
+}
+
+.slack-typing::after {
+  content: '...';
+  animation: typing-dots 1s infinite;
+}
+
+@keyframes typing-dots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60%, 100% { content: '...'; }
+}
+
+/* ==========================================================================
+   ANIMATION 4: CRM Deal Scoring
+   ========================================================================== */
+.crm-sim {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 6px 6px 12px rgba(0,0,0,0.12);
+  overflow: hidden;
+  font-size: 0.6em;
+}
+
+.crm-header {
+  background: #1B2A4A;
+  color: #fff;
+  padding: 0.8em 1.2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.crm-header h4 {
+  margin: 0;
+  font-size: 1.1em;
+}
+
+.crm-deal-stage {
+  background: rgba(255,255,255,0.2);
+  padding: 0.2em 0.6em;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+.crm-body {
+  padding: 1em 1.2em;
+}
+
+.crm-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 0;
+  border-bottom: 1px solid #f0f0f0;
+  opacity: 0;
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+.crm-field:nth-child(1) { animation-delay: 0.5s; }
+.crm-field:nth-child(2) { animation-delay: 1.0s; }
+.crm-field:nth-child(3) { animation-delay: 1.5s; }
+.crm-field:nth-child(4) { animation-delay: 2.0s; }
+.crm-field:nth-child(5) { animation-delay: 2.5s; }
+.crm-field:nth-child(6) { animation-delay: 3.0s; }
+
+.crm-field-label {
+  color: #999;
+  font-size: 0.9em;
+}
+
+.crm-field-value {
+  font-weight: 600;
+  color: #1B2A4A;
+}
+
+.crm-score-badge {
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.9em;
+}
+
+.crm-score-badge.score-a { background: #27AE60; color: #fff; }
+.crm-score-badge.score-b { background: #2ECC71; color: #fff; }
+.crm-score-badge.score-c { background: #F39C12; color: #fff; }
+
+.crm-health {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  opacity: 0;
+  animation: fadeInUp 0.4s ease forwards;
+  animation-delay: 3.5s;
+}
+
+.crm-health-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: pulseGlow 2s infinite;
+  animation-delay: 3.8s;
+}
+
+.crm-health-dot.green { background: #27AE60; }
+.crm-health-dot.yellow { background: #F7BE00; }
+.crm-health-dot.red { background: #D53429; }
+
+/* ==========================================================================
+   ANIMATION 5: Transcript → Content Flywheel
+   ========================================================================== */
+.flywheel-sim {
+  width: 100%;
+  position: relative;
+  font-size: 0.6em;
+}
+
+.flywheel-transcript {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 1em 1.2em;
+  margin-bottom: 1em;
+  line-height: 1.6;
+  color: #555;
+  max-height: 120px;
+  overflow: hidden;
+}
+
+.flywheel-highlight {
+  background: transparent;
+  transition: background 0.5s ease;
+  padding: 0.1em 0.2em;
+  border-radius: 3px;
+}
+
+/* Highlights activate in sequence */
+.present .flywheel-highlight:nth-of-type(1) { animation: highlightBg 0.5s ease forwards 1s; }
+.present .flywheel-highlight:nth-of-type(2) { animation: highlightBg 0.5s ease forwards 1.5s; }
+.present .flywheel-highlight:nth-of-type(3) { animation: highlightBg 0.5s ease forwards 2s; }
+.present .flywheel-highlight:nth-of-type(4) { animation: highlightBg 0.5s ease forwards 2.5s; }
+
+@keyframes highlightBg {
+  from { background: transparent; }
+  to { background: rgba(230, 126, 34, 0.2); color: #1B2A4A; font-weight: 600; }
+}
+
+.flywheel-outputs {
+  display: flex;
+  gap: 0.8em;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.flywheel-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.8em 1em;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  min-width: 120px;
+  opacity: 0;
+  animation: slideInRight 0.5s ease forwards;
+  border-top: 3px solid var(--navy);
+}
+
+.flywheel-card:nth-child(1) { animation-delay: 3s; border-top-color: var(--orange-start); }
+.flywheel-card:nth-child(2) { animation-delay: 3.5s; border-top-color: var(--blue-start); }
+.flywheel-card:nth-child(3) { animation-delay: 4s; border-top-color: var(--green); }
+.flywheel-card:nth-child(4) { animation-delay: 4.5s; border-top-color: var(--navy); }
+.flywheel-card:nth-child(5) { animation-delay: 5s; border-top-color: #7B1E85; }
+
+.flywheel-card-icon {
+  font-size: 1.8em;
+  margin-bottom: 0.2em;
+}
+
+.flywheel-card-label {
+  font-weight: 600;
+  color: #1B2A4A;
+  font-size: 0.9em;
+}
+
+/* ==========================================================================
+   Stat Bomb Slides
+   ========================================================================== */
+.stat-bomb {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+}
+
+.stat-bomb .stat-number-huge {
+  font-size: 8em;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1;
+  opacity: 0;
+  animation: countUp 0.6s ease forwards 0.3s;
+}
+
+.stat-bomb .stat-number-huge.orange {
+  background: linear-gradient(135deg, var(--orange-start), var(--orange-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-bomb .stat-label-huge {
+  font-size: 1.2em;
+  color: #777;
+  margin-top: 0.3em;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards 0.8s;
+}
