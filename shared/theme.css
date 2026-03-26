@@ -567,11 +567,29 @@
   word-wrap: break-word;
 }
 
+.code-block:empty { display: none; }
+
 .code-block .comment { color: #6c7086; }
 .code-block .keyword { color: #cba6f7; }
 .code-block .string  { color: #a6e3a1; }
 .code-block .func    { color: #89b4fa; }
 .code-block .flag    { color: #f9e2af; }
+
+/* ---------- Contextual Screenshots (Slack, product) ---------- */
+.screenshot-context {
+  max-height: 180px;
+  border-radius: 10px;
+  box-shadow: 6px 6px 9px rgba(0, 0, 0, 0.2);
+  margin-top: 1em;
+}
+
+.screenshot-caption {
+  font-size: 0.6em;
+  color: #999;
+  margin-top: 0.4em;
+  text-align: center;
+  font-style: italic;
+}
 
 /* ---------- Before / After ---------- */
 .before-after {
