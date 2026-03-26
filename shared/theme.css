@@ -552,6 +552,30 @@
   border-color: var(--navy);
 }
 
+/* Tool badge with inline icon */
+.tool-badge img {
+  height: 14px;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 0.3em;
+  filter: none;
+}
+
+/* Larger tool logo row — for standalone logo displays */
+.tool-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 1.8em;
+  margin-top: 1em;
+  flex-wrap: wrap;
+}
+
+.tool-logo-row img {
+  height: 28px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 /* ---------- Code Block ---------- */
 .code-block {
   background: #1e1e2e;
@@ -902,6 +926,11 @@
   border-radius: 6px;
   border-left: 3px solid var(--orange-start);
 }
+
+/* ---------- Card color accents ---------- */
+.card.accent-orange { border-top: 4px solid var(--orange-start); }
+.card.accent-blue   { border-top: 4px solid var(--blue-start); }
+.card.accent-green  { border-top: 4px solid var(--green); }
 
 /* ---------- Utility ---------- */
 .text-center { text-align: center; }
