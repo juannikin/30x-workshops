@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{company_name}} — Partnership Overview</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="../../shared/theme.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Slide 1: Cover -->
+      <section>
+        <div class="cover-slide">
+          <h1>{{company_name}}</h1>
+          <h2 style="font-size:1.2em; color:#777; font-weight:400;">Partnership Overview</h2>
+          <p class="subtitle">Custom-scoped. Month-to-month. You own everything we build.</p>
+          <p class="speaker">Prepared by GrowthMasters · {{date}}</p>
+        </div>
+      </section>
+
+      <!-- Slide 2: Agenda -->
+      <section>
+        <h2>Agenda</h2>
+        <ol class="numbered-list mt-2">
+          <li>Your challenges — what we heard</li>
+          <li>Our approach</li>
+          <li>Relevant case study</li>
+          <li>Solution overview</li>
+          <li>Investment & timeline</li>
+          <li>Next steps</li>
+        </ol>
+        <div class="slide-footer">GrowthMasters · {{company_name}}</div>
+      </section>
+
+      <!-- Slide 3: The Challenge -->
+      <section>
+        <h2>What We Heard</h2>
+        <p class="text-muted mb-2">Based on our conversations and research</p>
+        <div class="card mt-2">
+          <ul class="dash-list">
+            <li>{{pain_point_1}}</li>
+            <li>{{pain_point_2}}</li>
+            <li>{{pain_point_3}}</li>
+          </ul>
+        </div>
+        <div class="quote-box mt-2">
+          "{{key_quote}}"
+          <div class="attribution">— {{champion_name}}, {{champion_title}}</div>
+        </div>
+        <div class="slide-footer">GrowthMasters · {{company_name}}</div>
+      </section>
+
+      <!-- Slide 4: Our Approach -->
+      <section>
+        <h2>Our Approach</h2>
+        <div class="pattern-steps mt-3">
+          <div class="pattern-step">
+            <h4>Assess</h4>
+            <p>Source from your team. Understand what already works.</p>
+          </div>
+          <div class="pattern-step">
+            <h4>Decide</h4>
+            <p>Prioritize: highest impact, lowest effort first.</p>
+          </div>
+          <div class="pattern-step">
+            <h4>Act</h4>
+            <p>Build, execute, iterate. Embedded in your team.</p>
+          </div>
+          <div class="pattern-step">
+            <h4>Hand Off</h4>
+            <p>Document, train, transfer. You own everything.</p>
+          </div>
+        </div>
+        <p class="text-center mt-2 text-small text-muted">We sit on top of your existing systems — not replace them.</p>
+        <div class="slide-footer">GrowthMasters · {{company_name}}</div>
+      </section>
+
+      <!-- Slide 5: Case Study -->
+      <section>
+        <h2>Case Study: {{case_study_company}}</h2>
+        <p class="text-muted mb-1">{{case_study_industry}} · Similar challenges</p>
+        <div class="two-column mt-1">
+          <div>
+            <h3 style="font-size:0.9em;">What we did</h3>
+            <ul class="check-list">
+              <li>{{case_study_action_1}}</li>
+              <li>{{case_study_action_2}}</li>
+              <li>{{case_study_action_3}}</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="font-size:0.9em;">Results</h3>
+            <div class="stats-row">
+              <div class="stat">
+                <div class="stat-number">{{case_study_metric_1}}</div>
+                <div class="stat-label">{{case_study_metric_1_label}}</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">{{case_study_metric_2}}</div>
+                <div class="stat-label">{{case_study_metric_2_label}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">GrowthMasters · {{company_name}}</div>
+      </section>
+
+      <!-- Slide 6: Solution Overview -->
+      <section>
+        <h2>Solution for {{company_name}}</h2>
+        <div class="two-column mt-2">
+          <div class="card">
+            <h3 style="font-size:1em;">Pipeline Generation</h3>
+            <ul class="dash-list">
+              <li>{{solution_pipeline_1}}</li>
+              <li>{{solution_pipeline_2}}</li>
+              <li>{{solution_pipeline_3}}</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="font-size:1em;">AI-First Sales Team</h3>
+            <ul class="dash-list">
+              <li>{{solution_sales_1}}</li>
+              <li>{{solution_sales_2}}</li>
+              <li>{{solution_sales_3}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-2">
+          <span class="tool-badge badge-primary">{{tool_1}}</span>
+          <span class="tool-badge badge-primary">{{tool_2}}</span>
+          <span class="tool-badge">{{tool_3}}</span>
+          <span class="tool-badge">{{tool_4}}</span>
+        </div>
+        <div class="slide-footer">GrowthMasters · {{company_name}}</div>
+      </section>
+
+      <!-- Slide 7: Investment -->
+      <section>
+        <h2>Investment</h2>
+        <div class="card card-navy mt-2" style="max-width:600px; margin:0 auto; text-align:center;">
+          <h3 style="color:var(--gold); font-size:1.8em; margin-bottom:0.2em;">{{pricing_range}}</h3>
+          <p style="font-size:0.9em;">per month · custom scoped · month-to-month</p>
+        </div>
+        <div class="mt-2">
+          <ul class="check-list">
+            <li>Multi-channel, custom scoped to your needs</li>
+            <li>Embedded into your existing systems</li>
+            <li>Full documentation, team training, clean handoff</li>
+            <li>Everything we build is yours — no lock-in</li>
+          </ul>
+        </div>
+        <p class="text-center mt-2 text-small text-muted">Timeline: {{timeline}} to full engine handoff</p>
+        <div class="slide-footer">GrowthMasters · {{company_name}}</div>
+      </section>
+
+      <!-- Slide 8: Next Steps -->
+      <section>
+        <div class="closing-slide">
+          <h2>Next Steps</h2>
+          <div class="ladder mt-2" style="max-width:600px;">
+            <div class="rung">
+              <div class="rung-number">1</div>
+              <div><strong>{{next_step_1}}</strong></div>
+            </div>
+            <div class="rung">
+              <div class="rung-number">2</div>
+              <div><strong>{{next_step_2}}</strong></div>
+            </div>
+            <div class="rung active">
+              <div class="rung-number">3</div>
+              <div><strong>{{next_step_3}}</strong></div>
+            </div>
+          </div>
+          <div class="contact">
+            Juan Felipe Campos · growthmasters.io
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="../../shared/reveal-config.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+company_name,domain,industry,hq_location,employee_count,funding_stage,linkedin_url,contact_name,contact_title,contact_email
+Vantage Analytics,vantageanalytics.io,Data Analytics,San Francisco CA,120,Series A,https://linkedin.com/company/vantage-analytics,Sarah Chen,VP of Sales,sarah.chen@vantageanalytics.io
+NexFlow Systems,nexflow.com,Marketing Automation,Austin TX,85,Seed,https://linkedin.com/company/nexflow-systems,Marcus Rivera,Head of Growth,marcus.rivera@nexflow.com
+Clearpath Security,clearpathsec.com,Cybersecurity,New York NY,340,Series B,https://linkedin.com/company/clearpath-security,James Okafor,CRO,james.okafor@clearpathsec.com
+Luminary Health,luminaryhealth.io,HealthTech,Boston MA,210,Series A,https://linkedin.com/company/luminary-health,Dr. Priya Sharma,VP of Partnerships,priya.sharma@luminaryhealth.io
+StackForge,stackforge.dev,Developer Tools,Seattle WA,55,Seed,https://linkedin.com/company/stackforge,Alex Kim,CEO,alex.kim@stackforge.dev
+Propel Finance,propelfinance.com,FinTech,Chicago IL,175,Series B,https://linkedin.com/company/propel-finance,Rachel Thompson,Head of Revenue,rachel.thompson@propelfinance.com
+Orbitra Logistics,orbitra.io,Supply Chain / Logistics,Atlanta GA,290,Series A,https://linkedin.com/company/orbitra-logistics,David Mensah,VP of Operations,david.mensah@orbitra.io
+Pinnacle HR,pinnaclehr.com,HR Tech,Denver CO,95,Seed,https://linkedin.com/company/pinnacle-hr,Emily Watson,Co-Founder & COO,emily.watson@pinnaclehr.com
+Stratos Cloud,stratoscloud.io,Cloud Infrastructure,Portland OR,410,Series C,https://linkedin.com/company/stratos-cloud,Michael Zhang,Director of Sales,michael.zhang@stratoscloud.io
+Converge AI,converge-ai.com,AI / ML Platform,Toronto ON,150,Series A,https://linkedin.com/company/converge-ai,Laura Pedersen,VP of Business Development,laura.pedersen@converge-ai.com

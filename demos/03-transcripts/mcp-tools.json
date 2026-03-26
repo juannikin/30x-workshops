@@ -1,0 +1,475 @@
+{
+  "name": "transcript-agent-tools",
+  "version": "1.0.0",
+  "description": "MCP tool definitions for the Transcript Processing Agent. 7 tools covering the full post-call workflow: ingest, extract, generate content, update CRM.",
+  "tools": [
+    {
+      "name": "ingest_transcript",
+      "description": "Ingest a call transcript from a file, URL, or recording platform (Gong, Fireflies, Otter). Normalizes the transcript into a standard format with speaker labels and timestamps.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "source_type": {
+            "type": "string",
+            "enum": ["file", "url", "gong", "fireflies", "otter", "raw_text"],
+            "description": "Source of the transcript."
+          },
+          "source": {
+            "type": "string",
+            "description": "File path, URL, recording ID, or raw text depending on source_type."
+          },
+          "deal_id": {
+            "type": "string",
+            "description": "CRM deal ID to associate the transcript with."
+          },
+          "call_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of the call. Auto-detected from metadata if available."
+          },
+          "participants_override": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "title": { "type": "string" },
+                "company": { "type": "string" },
+                "role": { "type": "string", "enum": ["vendor", "prospect"] }
+              }
+            },
+            "description": "Manually specify participants if not detected in the transcript."
+          }
+        },
+        "required": ["source_type", "source"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "transcript_id": { "type": "string" },
+          "normalized_text": { "type": "string" },
+          "duration_minutes": { "type": "number" },
+          "participant_count": { "type": "integer" },
+          "participants": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "title": { "type": "string" },
+                "company": { "type": "string" },
+                "role": { "type": "string" },
+                "talk_time_pct": { "type": "number" }
+              }
+            }
+          },
+          "word_count": { "type": "integer" },
+          "stored_path": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "extract_insights",
+      "description": "Extract structured insights from a normalized transcript: decisions, action items, pain points, objections, buying signals, competitor mentions, disclosed signals, and key quotes.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "transcript_id": {
+            "type": "string",
+            "description": "ID from ingest_transcript, or path to transcript file."
+          },
+          "transcript_text": {
+            "type": "string",
+            "description": "Raw transcript text if not using transcript_id."
+          },
+          "extraction_focus": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["decisions", "action_items", "pain_points", "objections", "buying_signals", "competitor_mentions", "disclosed_signals", "key_quotes", "all"]
+            },
+            "default": ["all"],
+            "description": "Which insight categories to extract. Default: all."
+          },
+          "deal_id": {
+            "type": "string",
+            "description": "CRM deal ID for enriching insights with deal context."
+          },
+          "prior_insights": {
+            "type": "string",
+            "description": "Path to prior insights JSON to merge with (for multi-call accumulation)."
+          }
+        },
+        "required": ["transcript_id"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "insights_id": { "type": "string" },
+          "call_metadata": {
+            "type": "object",
+            "properties": {
+              "date": { "type": "string" },
+              "duration_minutes": { "type": "number" },
+              "call_type": { "type": "string" },
+              "overall_sentiment": { "type": "string" },
+              "deal_advancement": { "type": "string" }
+            }
+          },
+          "decisions": { "type": "array" },
+          "action_items": { "type": "array" },
+          "pain_points": { "type": "array" },
+          "objections": { "type": "array" },
+          "buying_signals": { "type": "array" },
+          "competitor_mentions": { "type": "array" },
+          "disclosed_signals": { "type": "array" },
+          "key_quotes": { "type": "array" },
+          "summary": {
+            "type": "object",
+            "properties": {
+              "one_line": { "type": "string" },
+              "next_steps_summary": { "type": "string" },
+              "risk_factors": { "type": "array", "items": { "type": "string" } },
+              "champion_assessment": { "type": "string" },
+              "recommended_follow_up": { "type": "string" }
+            }
+          },
+          "stored_path": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "generate_deck_slides",
+      "description": "Generate a personalized sales mini-deck (5 slides, Reveal.js HTML) from transcript insights. Maps pain points to solutions, includes case study proof, and lists agreed next steps.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "insights_id": {
+            "type": "string",
+            "description": "ID from extract_insights."
+          },
+          "insights_path": {
+            "type": "string",
+            "description": "Path to insights JSON file if not using insights_id."
+          },
+          "deal_id": {
+            "type": "string",
+            "description": "CRM deal ID for additional context."
+          },
+          "case_study_override": {
+            "type": "string",
+            "description": "Force a specific case study company name."
+          },
+          "slide_count": {
+            "type": "integer",
+            "default": 5,
+            "description": "Number of slides to generate (3-8)."
+          },
+          "include_speaker_notes": {
+            "type": "boolean",
+            "default": true,
+            "description": "Include speaker notes in the deck."
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["html", "pdf", "both"],
+            "default": "html"
+          }
+        },
+        "required": ["insights_id"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string" },
+          "slide_count": { "type": "integer" },
+          "case_study_used": { "type": "string" },
+          "pain_points_addressed": { "type": "integer" },
+          "personalizations": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    {
+      "name": "generate_landing_page",
+      "description": "Generate a personalized HTML landing page from transcript insights. Includes hero, pain points, solution mapping, social proof, and CTA sections. Mobile-responsive, self-contained HTML.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "insights_id": {
+            "type": "string",
+            "description": "ID from extract_insights."
+          },
+          "insights_path": {
+            "type": "string",
+            "description": "Path to insights JSON if not using insights_id."
+          },
+          "deal_id": {
+            "type": "string",
+            "description": "CRM deal ID."
+          },
+          "page_type": {
+            "type": "string",
+            "enum": ["prospect_specific", "vertical", "abm"],
+            "default": "prospect_specific",
+            "description": "Type of landing page to generate."
+          },
+          "case_study_override": {
+            "type": "string",
+            "description": "Force a specific case study."
+          },
+          "cta_type": {
+            "type": "string",
+            "enum": ["schedule_demo", "download_report", "watch_video", "contact_sales", "custom"],
+            "default": "schedule_demo"
+          },
+          "cta_url": {
+            "type": "string",
+            "description": "URL for the CTA button. Required if cta_type is custom."
+          }
+        },
+        "required": ["insights_id"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string" },
+          "sections_generated": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "pain_points_used": { "type": "integer" },
+          "case_study_used": { "type": "string" },
+          "estimated_load_time_ms": { "type": "integer" }
+        }
+      }
+    },
+    {
+      "name": "generate_social_posts",
+      "description": "Generate LinkedIn posts from multiple transcript insights by identifying recurring themes across calls. Anonymizes all prospect data. Outputs ready-to-post content with engagement predictions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "insights_ids": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Array of insights IDs to analyze for themes."
+          },
+          "insights_paths": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Array of paths to insights JSON files."
+          },
+          "post_count": {
+            "type": "integer",
+            "default": 3,
+            "description": "Number of posts to generate."
+          },
+          "platform": {
+            "type": "string",
+            "enum": ["linkedin", "twitter", "both"],
+            "default": "linkedin"
+          },
+          "tone": {
+            "type": "string",
+            "enum": ["thought_leader", "practitioner", "contrarian", "storyteller"],
+            "default": "practitioner"
+          },
+          "author_name": {
+            "type": "string",
+            "description": "Name to use for first-person perspective."
+          },
+          "avoid_topics": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Topics to avoid in generated posts."
+          }
+        },
+        "required": ["insights_ids"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "posts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "theme": { "type": "string" },
+                "theme_frequency": { "type": "integer" },
+                "post_text": { "type": "string" },
+                "word_count": { "type": "integer" },
+                "suggested_hashtags": { "type": "array", "items": { "type": "string" } },
+                "best_post_time": { "type": "string" },
+                "engagement_prediction": { "type": "string", "enum": ["low", "medium", "high"] },
+                "source_transcripts": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          },
+          "themes_identified": { "type": "integer" },
+          "privacy_check_passed": { "type": "boolean" }
+        }
+      }
+    },
+    {
+      "name": "update_crm_from_call",
+      "description": "Update CRM records (Attio, Clarify, or HubSpot) with structured data extracted from a call transcript. Updates deal fields, contact records, activity logs, and competitive intelligence.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "insights_id": {
+            "type": "string",
+            "description": "ID from extract_insights."
+          },
+          "deal_id": {
+            "type": "string",
+            "description": "CRM deal ID to update."
+          },
+          "crm_platform": {
+            "type": "string",
+            "enum": ["attio", "clarify", "hubspot"],
+            "default": "attio"
+          },
+          "update_scope": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["deal_fields", "contact_records", "activity_log", "notes", "competitive_intel", "action_items", "all"]
+            },
+            "default": ["all"]
+          },
+          "dry_run": {
+            "type": "boolean",
+            "default": false,
+            "description": "If true, return proposed changes without writing to CRM."
+          },
+          "require_approval_for": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["amount", "stage", "close_date", "none"]
+            },
+            "default": ["amount", "stage", "close_date"],
+            "description": "Fields that require AE approval before updating."
+          }
+        },
+        "required": ["insights_id", "deal_id"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "updates_applied": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": { "type": "string" },
+                "previous_value": {},
+                "new_value": {},
+                "source_timestamp": { "type": "string" },
+                "confidence": { "type": "string" }
+              }
+            }
+          },
+          "updates_pending_approval": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": { "type": "string" },
+                "proposed_value": {},
+                "reason": { "type": "string" }
+              }
+            }
+          },
+          "action_items_created": { "type": "integer" },
+          "contacts_updated": { "type": "integer" },
+          "health_score": {
+            "type": "object",
+            "properties": {
+              "previous": { "type": "string" },
+              "current": { "type": "string" },
+              "score": { "type": "integer" },
+              "factors": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "champion_identified": { "type": "string" },
+          "dry_run": { "type": "boolean" }
+        }
+      }
+    },
+    {
+      "name": "generate_ad_copy",
+      "description": "Generate ad copy variations (Google Ads, Meta, LinkedIn) from transcript insights. Uses prospect language patterns, pain points, and validated messaging from real buyer conversations.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "insights_ids": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Array of insights IDs to mine for messaging."
+          },
+          "platform": {
+            "type": "string",
+            "enum": ["google_ads", "meta", "linkedin", "all"],
+            "default": "all"
+          },
+          "campaign_objective": {
+            "type": "string",
+            "enum": ["awareness", "consideration", "conversion"],
+            "default": "consideration"
+          },
+          "target_persona": {
+            "type": "string",
+            "description": "Target persona for the ads (e.g., 'VP of Marketing at mid-market healthcare companies')."
+          },
+          "variations_per_platform": {
+            "type": "integer",
+            "default": 3,
+            "description": "Number of ad variations to generate per platform."
+          },
+          "tone": {
+            "type": "string",
+            "enum": ["professional", "conversational", "urgent", "empathetic"],
+            "default": "professional"
+          }
+        },
+        "required": ["insights_ids", "target_persona"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "ads": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "platform": { "type": "string" },
+                "headline": { "type": "string" },
+                "description": { "type": "string" },
+                "cta": { "type": "string" },
+                "character_counts": {
+                  "type": "object",
+                  "properties": {
+                    "headline": { "type": "integer" },
+                    "description": { "type": "integer" }
+                  }
+                },
+                "within_limits": { "type": "boolean" },
+                "pain_point_addressed": { "type": "string" },
+                "source_language": { "type": "string" }
+              }
+            }
+          },
+          "messaging_themes": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "privacy_check_passed": { "type": "boolean" }
+        }
+      }
+    }
+  ]
+}

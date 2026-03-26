@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fundamentos — AI-First GTM: Del Concepto a la Ejecucion</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="../shared/theme.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============================================
+           SLIDE 1 — Cover
+           ============================================ -->
+      <section>
+        <div class="cover-slide">
+          <h1>AI-First GTM</h1>
+          <h2 style="font-size:1.4em; color:#777; font-weight:400;">Del Concepto a la Ejecucion</h2>
+          <p class="subtitle">Workshops practicos para founders que quieren construir su propio motor de go-to-market con IA</p>
+          <p class="speaker">
+            Juan Felipe Campos · Co-Founder, GrowthMasters<br>
+            <span style="font-size:0.85em;">growthmasters.io · 30x.org</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 2 — Quien es Juan Felipe
+           ============================================ -->
+      <section>
+        <h2>Quien soy</h2>
+        <div class="stats-row mt-2">
+          <div class="stat">
+            <div class="stat-number">250+</div>
+            <div class="stat-label">Empresas B2B</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">500M+</div>
+            <div class="stat-label">Views en LinkedIn</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">14</div>
+            <div class="stat-label">Equipo (bootstrapped)</div>
+          </div>
+        </div>
+        <p class="text-center mt-2 text-small text-muted">Forward-deployed GTM engineers. Embedded en los equipos de nuestros clientes.</p>
+        <p class="text-center text-small text-muted">Clientes respaldados por a16z · Sequoia · Bessemer · First Round · Madrona · Evolution Equity</p>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 3 — GrowthMasters: Dos motores
+           ============================================ -->
+      <section>
+        <h2>GrowthMasters: Dos motores, un sistema</h2>
+        <div class="two-column mt-2">
+          <div class="card">
+            <h3 style="font-size:1em;">Pipeline Generation</h3>
+            <ul class="dash-list">
+              <li>Allbound: cold + warm + inbound routing</li>
+              <li>Content: thought leadership, 500M+ views</li>
+              <li>Paid Ads: 200+ ads en 72h</li>
+              <li>TAM Scoring: ICP scorecards A/B/C/D</li>
+            </ul>
+            <div class="mt-1">
+              <span class="tool-badge">Clay</span>
+              <span class="tool-badge">Instantly</span>
+              <span class="tool-badge">Exa</span>
+              <span class="tool-badge">LinkedIn</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3 style="font-size:1em;">AI-First Sales Team</h3>
+            <ul class="dash-list">
+              <li>Decks y proposals desde datos del CRM</li>
+              <li>Battlecards y talk tracks automatizados</li>
+              <li>Insights desde call transcripts</li>
+              <li>RevOps: pipeline visibility, automations</li>
+            </ul>
+            <div class="mt-1">
+              <span class="tool-badge">Claude</span>
+              <span class="tool-badge">Attio</span>
+              <span class="tool-badge">Granola</span>
+              <span class="tool-badge">Gong</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 4 — Source from the team
+           ============================================ -->
+      <section>
+        <div class="dramatic">
+          <h2>"Source from the team,<br>systemize, make it better,<br><span class="highlight">hand it off."</span></h2>
+          <p class="mt-2 text-muted" style="font-size:0.8em;">No empujamos ideas nuevas. Creamos un digital twin de los procesos que ya funcionan.<br>Si es nuevo, se rechaza. Si es una mejor version de lo que ya hacen, se adopta.</p>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 5 — El Patron Repetible
+           ============================================ -->
+      <section>
+        <h2>El Patron Repetible</h2>
+        <div class="pattern-steps mt-3">
+          <div class="pattern-step">
+            <h4>Build the tool</h4>
+            <p>Herramienta bespoke construida en un fin de semana</p>
+          </div>
+          <div class="pattern-step">
+            <h4>Write the AOP</h4>
+            <p>Agentic Operating Procedure: la rutina documentada</p>
+          </div>
+          <div class="pattern-step">
+            <h4>Expose via MCP</h4>
+            <p>Model Context Protocol: el USB-C de la IA</p>
+          </div>
+          <div class="pattern-step">
+            <h4>Let AI run it</h4>
+            <p>El agente ejecuta, el humano supervisa</p>
+          </div>
+        </div>
+        <p class="text-center mt-3 text-small text-muted">Asi construimos OpenClaw — nuestro primer empleado AI que ayuda a contratar humanos.</p>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 6 — AOP vs SOP
+           ============================================ -->
+      <section>
+        <h2>AOP vs SOP</h2>
+        <div class="before-after mt-2">
+          <div class="before">
+            <div class="label">SOP — Para humanos</div>
+            <ul class="dash-list">
+              <li>Standard Operating Procedure</li>
+              <li>Paso a paso para el equipo</li>
+              <li>Training, accountability, updates</li>
+              <li>Bottom-up adoption: la gente necesita soporte</li>
+            </ul>
+          </div>
+          <div class="after">
+            <div class="label">AOP — Para agentes AI</div>
+            <ul class="dash-list">
+              <li>Agentic Operating Procedure</li>
+              <li>Rutina + reglas de escalacion para el AI</li>
+              <li>MCP tools como el vocabulario del agente</li>
+              <li>Human-in-the-loop: el AI escala, el humano decide</li>
+            </ul>
+          </div>
+        </div>
+        <div class="quote-box mt-2">
+          "No tiene sentido ensenar a escribir icebreakers a escala — eso ya es un AOP. El SOP es para lo que aun requiere juicio humano."
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 7 — Roadmap de los 3 workshops
+           ============================================ -->
+      <section>
+        <h2>Que vamos a construir</h2>
+        <div class="ladder mt-2">
+          <div class="rung">
+            <div class="rung-number">1</div>
+            <div>
+              <strong>BDR/SDR AI Agent</strong><br>
+              <span class="text-small text-muted">Sourcing, scoring, copy, secuencias omnichannel, appointment setting</span>
+            </div>
+          </div>
+          <div class="rung">
+            <div class="rung-number">2</div>
+            <div>
+              <strong>AE AI — De Meeting a Cierre</strong><br>
+              <span class="text-small text-muted">Daily briefs, decks, proposals, pipeline health, reactivation</span>
+            </div>
+          </div>
+          <div class="rung">
+            <div class="rung-number">3</div>
+            <div>
+              <strong>Call Transcripts = Oro</strong><br>
+              <span class="text-small text-muted">Transcripts → decks, landing pages, LinkedIn posts, CRM intelligence</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-center mt-2 text-small">Cada workshop es hands-on. Van a salir con algo funcionando.</p>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 8 — El Stack Moderno
+           ============================================ -->
+      <section>
+        <h2>El Stack Moderno</h2>
+        <div class="flow mt-2" style="justify-content:center;">
+          <div class="step step-highlight">Claude Code</div>
+          <div class="arrow">+</div>
+          <div class="step">Supabase</div>
+          <div class="arrow">+</div>
+          <div class="step">Vercel</div>
+          <div class="arrow">+</div>
+          <div class="step">CRM (Attio/Clarify)</div>
+          <div class="arrow">+</div>
+          <div class="step">MCP</div>
+        </div>
+        <div class="two-column mt-3">
+          <div>
+            <h3 style="font-size:0.9em;">Por que este stack?</h3>
+            <ul class="check-list">
+              <li>Todo API-first y MCP-ready</li>
+              <li>Deploy en minutos, no semanas</li>
+              <li>El AI puede operar cada componente</li>
+              <li>Tu lo puedes mantener sin un CTO</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="font-size:0.9em;">Lo que reemplaza</h3>
+            <ul class="dash-list">
+              <li>Dust.tt → Claude Code</li>
+              <li>N8N / Zapier → Claude Code</li>
+              <li>Custom APIs → MCP tools</li>
+              <li>Salesforce/HubSpot → Attio/Clarify</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 9 — Claude Code
+           ============================================ -->
+      <section>
+        <h2>Claude Code: tu co-founder tecnico</h2>
+        <p class="text-muted mb-2">"Esta canibalizando la mayoria de nuestro tech stack"</p>
+        <div class="two-column">
+          <div>
+            <ul class="check-list">
+              <li>CLI-first: vive en tu terminal</li>
+              <li>Lee, escribe y ejecuta codigo</li>
+              <li>Se conecta a cualquier API via MCP</li>
+              <li>Claude Cowork: delegacion asincrona en background</li>
+              <li>No es ChatGPT — es un agente que actua</li>
+            </ul>
+          </div>
+          <div class="code-block">
+<span class="comment"># Instalar</span>
+<span class="keyword">npm</span> install -g <span class="string">@anthropic-ai/claude-code</span>
+
+<span class="comment"># Lanzar</span>
+<span class="keyword">claude</span>
+
+<span class="comment"># Tu primer prompt</span>
+> <span class="string">"Lee los datos de mis ultimos 10 deals
+  en Attio y genera un reporte de
+  pipeline health"</span>
+          </div>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 10 — DEMO: Installing Claude Code
+           ============================================ -->
+      <section>
+        <h2>DEMO: Claude Code en accion</h2>
+        <div class="demo-callout">
+          <p><strong>Lo que vamos a hacer:</strong></p>
+          <ol class="numbered-list">
+            <li>Instalar Claude Code desde la terminal</li>
+            <li>Configurar la API key</li>
+            <li>Primer prompt: "Crea un proyecto Supabase con una tabla de leads"</li>
+            <li>Ver como genera el schema, las funciones y lo deploya</li>
+          </ol>
+        </div>
+        <div class="code-block mt-2">
+<span class="keyword">npm</span> install -g <span class="string">@anthropic-ai/claude-code</span>
+<span class="keyword">claude</span>
+> <span class="string">"Crea un proyecto nuevo en Supabase con una tabla 'leads'
+  que tenga: nombre, empresa, email, linkedin_url,
+  score (integer), tier (text), stage (text),
+  created_at (timestamp). Deployalo."</span>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 11 — Supabase + Vercel
+           ============================================ -->
+      <section>
+        <h2>Supabase + Vercel: backend y deploy en minutos</h2>
+        <div class="two-column mt-2">
+          <div class="card">
+            <h3 style="font-size:1em;">Supabase</h3>
+            <ul class="check-list">
+              <li>Postgres database lista para usar</li>
+              <li>Auth, Storage, Edge Functions</li>
+              <li>Realtime subscriptions</li>
+              <li>API auto-generada desde tu schema</li>
+              <li>Free tier generoso para empezar</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 style="font-size:1em;">Vercel</h3>
+            <ul class="check-list">
+              <li><code>git push</code> = deployed</li>
+              <li>Preview URLs para cada branch</li>
+              <li>Edge Functions globales</li>
+              <li>Zero config para Next.js, static sites</li>
+              <li>Free tier para proyectos personales</li>
+            </ul>
+          </div>
+        </div>
+        <p class="text-center mt-2 text-small text-muted">Juntos: tu backend y tu frontend listos en minutos. Claude Code los opera directamente.</p>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 12 — CRM AI-First
+           ============================================ -->
+      <section>
+        <h2>CRM AI-First: Attio vs Clarify</h2>
+        <p class="text-muted mb-2">Por que NO Salesforce o HubSpot para esto?</p>
+        <div class="before-after">
+          <div class="before">
+            <div class="label">Legacy CRM</div>
+            <ul class="dash-list">
+              <li>APIs complejas, rate limits agresivos</li>
+              <li>Requiere admin dedicado</li>
+              <li>No soporta MCP nativamente</li>
+              <li>Overkill para equipos &lt;50 personas</li>
+              <li>El AI no puede operar libremente</li>
+            </ul>
+          </div>
+          <div class="after">
+            <div class="label">AI-First CRM</div>
+            <ul class="dash-list">
+              <li>API-first, MCP-ready</li>
+              <li>Se configura en horas, no meses</li>
+              <li>Sync nativo con email, calendar, LinkedIn</li>
+              <li>El AI lee y escribe como un usuario mas</li>
+              <li>Pensado para equipos agiles</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-2">
+          <span class="tool-badge badge-primary">Attio</span>
+          <span class="tool-badge badge-primary">Clarify</span>
+          <span class="text-small text-muted" style="margin-left:0.5em;">— Ambos excelentes. Elige el que te guste mas.</span>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 13 — MCP
+           ============================================ -->
+      <section>
+        <h2>MCP — "El USB-C de la IA"</h2>
+        <p class="text-muted mb-2">Model Context Protocol: como el AI se conecta a tus herramientas</p>
+        <div class="three-column mt-2">
+          <div class="card" style="text-align:center;">
+            <h3 style="font-size:1.8em;">🔧</h3>
+            <h3 style="font-size:0.9em;">Tools</h3>
+            <p class="text-small text-muted">Acciones que el AI puede ejecutar:<br><code>send_email()</code>, <code>score_lead()</code></p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <h3 style="font-size:1.8em;">📄</h3>
+            <h3 style="font-size:0.9em;">Resources</h3>
+            <p class="text-small text-muted">Datos que el AI puede leer:<br>CRM records, transcripts, docs</p>
+          </div>
+          <div class="card" style="text-align:center;">
+            <h3 style="font-size:1.8em;">💬</h3>
+            <h3 style="font-size:0.9em;">Prompts</h3>
+            <p class="text-small text-muted">Templates reusables:<br>briefing prompts, scoring rubrics</p>
+          </div>
+        </div>
+        <div class="quote-box mt-2">
+          "Con MCP, Claude Code puede usar 26 herramientas distintas. No necesitas saber programar — necesitas saber que quieres que haga."
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 14 — Las 4 Dimensiones del Scoring
+           ============================================ -->
+      <section>
+        <h2>Las 4 Dimensiones del Scoring</h2>
+        <p class="text-muted mb-2">Mas dinero con menos esfuerzo: pon tus mejores recursos en las cuentas de mayor valor</p>
+        <div class="grade-cards mt-2">
+          <div class="grade-card grade-a">
+            <div class="grade-letter">1</div>
+            <div class="grade-label">Account Fit<br><span style="font-size:0.85em;">ICP scoring: firmographic, technographic, headcount, funding</span></div>
+          </div>
+          <div class="grade-card grade-b">
+            <div class="grade-letter">2</div>
+            <div class="grade-label">Individual Fit<br><span style="font-size:0.85em;">Seniority, department, buying authority — A/B/C/D</span></div>
+          </div>
+          <div class="grade-card grade-c">
+            <div class="grade-letter">3</div>
+            <div class="grade-label">Intent Signals<br><span style="font-size:0.85em;">Website visits, webinar signups, content downloads, social engagement</span></div>
+          </div>
+          <div class="grade-card grade-d">
+            <div class="grade-letter">4</div>
+            <div class="grade-label">Disclosed Signals<br><span style="font-size:0.85em;">Budget, timeline, decision criteria — lo que revelan en meetings</span></div>
+          </div>
+        </div>
+        <p class="text-center mt-2 text-small">Cada dimension tiene un peso diferente segun tu negocio. Los pesos se calibran con el equipo.</p>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 15 — El Camino ABM
+           ============================================ -->
+      <section>
+        <h2>El Camino ABM: de lo amplio a lo especifico</h2>
+        <p class="text-muted mb-1">No empiezas con messaging personalizado por cuenta. Empiezas con buckets.</p>
+        <div class="ladder mt-1">
+          <div class="rung">
+            <div class="rung-number">1</div>
+            <div>
+              <strong>Account Tiering (A/B/C/D)</strong><br>
+              <span class="text-small text-muted">3-4 buckets. Tier 1 → AE + ad cover generoso. Tier 2 → BDR + incentivo. Tier 3 → PLG.</span>
+            </div>
+          </div>
+          <div class="rung">
+            <div class="rung-number">2</div>
+            <div>
+              <strong>Individual Tiering</strong><br>
+              <span class="text-small text-muted">Dentro de cada cuenta: es la persona correcta? Seniority, departamento, buying authority.</span>
+            </div>
+          </div>
+          <div class="rung">
+            <div class="rung-number">3</div>
+            <div>
+              <strong>Behavioral Scoring</strong><br>
+              <span class="text-small text-muted">Intent signals: que estan haciendo? Descargaron contenido? Visitaron pricing?</span>
+            </div>
+          </div>
+          <div class="rung active">
+            <div class="rung-number">4</div>
+            <div>
+              <strong>Disclosed Signals + Custom Messaging</strong><br>
+              <span class="text-small text-muted">Solo aqui inviertes en messaging personalizado por cuenta. Necesitas el scoring robusto primero.</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 16 — Audience → Offer → Mechanism
+           ============================================ -->
+      <section>
+        <h2>Audience → Offer → Mechanism</h2>
+        <p class="text-muted mb-2">Asi pensamos cualquier GTM motion</p>
+        <div class="three-column mt-2">
+          <div class="card card-navy" style="text-align:center;">
+            <h3 style="font-size:1.5em; color:var(--gold);">Audience</h3>
+            <p style="font-size:0.8em;">A quien le vendes? Se construye en Clay, tu CRM, LinkedIn Ads. Donde esta tu buyer?</p>
+          </div>
+          <div class="card card-navy" style="text-align:center;">
+            <h3 style="font-size:1.5em; color:var(--gold);">Offer</h3>
+            <p style="font-size:0.8em;">Que le ofreces? Demo, lead magnet, webinar, gated content, free trial? Transaccional o nurture?</p>
+          </div>
+          <div class="card card-navy" style="text-align:center;">
+            <h3 style="font-size:1.5em; color:var(--gold);">Mechanism</h3>
+            <p style="font-size:0.8em;">Como lo entregas? Sequencer, ads, LinkedIn, email, SMS? Que canal domina tu ICP?</p>
+          </div>
+        </div>
+        <p class="text-center mt-2 text-small">"No estoy casado con un canal. Estoy casado con el growth. Trabajamos hacia atras desde ahi."</p>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 17 — EJERCICIO: Configura tu entorno
+           ============================================ -->
+      <section>
+        <h2>EJERCICIO: Configura tu entorno</h2>
+        <div class="hands-on">
+          <p><strong>Checklist — necesitas esto para los proximos workshops:</strong></p>
+          <ul class="check-list">
+            <li>Claude Code instalado: <code>npm install -g @anthropic-ai/claude-code</code></li>
+            <li>Anthropic API key configurada</li>
+            <li>Cuenta de Supabase (free tier): <code>supabase.com</code></li>
+            <li>Cuenta de Vercel (free tier): <code>vercel.com</code></li>
+            <li>CRM trial activo: Attio o Clarify</li>
+            <li>Clay account (free tier): <code>clay.com</code></li>
+          </ul>
+        </div>
+        <div class="code-block mt-2">
+<span class="comment"># Verifica tu setup</span>
+<span class="keyword">claude</span> <span class="flag">--version</span>
+<span class="keyword">supabase</span> <span class="flag">--version</span>
+<span class="keyword">vercel</span> <span class="flag">--version</span>
+
+<span class="comment"># Si todo responde, estas listo.</span>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop · Fundamentos</div>
+      </section>
+
+      <!-- ============================================
+           SLIDE 18 — Cierre
+           ============================================ -->
+      <section>
+        <div class="closing-slide">
+          <h2>"Es un gran momento<br>para <span class="highlight">construir.</span>"</h2>
+          <p class="mt-2" style="font-size:0.9em; color:#777; max-width:20em;">
+            Build the tool. Write the AOP.<br>
+            Expose via MCP. Let AI run it.
+          </p>
+          <div class="contact">
+            Juan Felipe Campos · growthmasters.io<br>
+            LinkedIn: juanfelipecampos · 30x.org
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /slides -->
+  </div><!-- /reveal -->
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="../shared/reveal-config.js"></script>
+</body>
+</html>

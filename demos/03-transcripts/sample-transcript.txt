@@ -1,0 +1,287 @@
+CALL TRANSCRIPT
+Date: March 18, 2026
+Duration: 15:42
+Participants:
+  - Jordan Ellis, Account Executive, BrightSignal (Vendor)
+  - Lisa Huang, VP of Marketing, Meridian Health Systems
+  - Derek Patel, Director of Demand Gen, Meridian Health Systems
+Recording: Gong ID #MHS-2026-0318
+
+---
+
+[00:00] JORDAN: Lisa, Derek — thanks for making time today. I know your
+calendars are packed, especially with the fiscal year planning cycle. Before
+we dive in, I wanted to confirm — is the goal still to have a decision by
+end of Q2, so your team can go live before the fall campaign season?
+
+[00:18] LISA: That's right. We have our annual patient acquisition campaign
+starting in September, and I need whatever we go with to be fully ramped by
+then. So really we're looking at a decision by end of April, contract signed
+in May, implementation through June and July, live by August first.
+
+[00:38] JORDAN: Got it. August first go-live, decision by end of April.
+That's helpful. Can I start by asking — what's driving the urgency? I know
+you mentioned some pain points last time but I'd love to go deeper.
+
+[00:52] LISA: Sure. So the short version is we're spending about two point
+three million a year on paid digital — Google, Meta, some programmatic — and
+I honestly cannot tell you which campaigns are actually driving patient
+appointments. Our attribution is broken. We have data in Google Analytics,
+data in our CRM which is Salesforce, data in our call tracking system, and
+none of it agrees. Last board meeting, our CFO asked me what the ROI on
+marketing spend was and I had to give him three different numbers depending
+on which system you looked at.
+
+[01:28] JORDAN: Three different numbers. That's a tough spot to be in with
+the CFO. What was the delta between them?
+
+[01:34] LISA: The gap was massive. Google Analytics said we generated about
+eighteen thousand leads last quarter. Salesforce said twelve thousand.
+CallRail said nine thousand attributed calls. So depending on who you ask,
+our cost per acquisition is either a hundred twenty-eight dollars or two
+hundred fifty-six dollars. That's a two-x difference. And the board wants to
+see it under a hundred and fifty.
+
+[02:02] DEREK: If I can jump in — the operational side is painful too. My
+team spends about fifteen hours a week manually pulling reports from five
+different platforms, trying to reconcile the numbers. We built this monster
+spreadsheet that tries to de-duplicate, but every month something breaks.
+Last month we double-counted about four hundred leads because of a UTM
+parameter change that didn't propagate.
+
+[02:28] JORDAN: Fifteen hours a week on manual reporting. That's almost
+two full days of someone's time. Derek, how many people are on your demand
+gen team?
+
+[02:36] DEREK: Four people, including me. So that fifteen hours is basically
+one person's entire week just doing reporting instead of optimization. I'd
+rather have them running experiments and improving campaigns.
+
+[02:48] JORDAN: Absolutely. So to summarize what I'm hearing — three main
+challenges. One, attribution is fragmented across multiple systems giving
+you conflicting numbers. Two, manual reporting is eating fifteen hours a
+week from a four-person team. Three, you can't confidently report ROI to
+the board, which puts the budget at risk.
+
+[03:10] LISA: That's exactly right. And I'll add a fourth — we can't do
+real-time optimization. By the time we get the reconciled numbers, the
+campaign has been running for three weeks on bad data. We're making
+decisions on stale information.
+
+[03:24] JORDAN: That's a critical one. Real-time visibility. Got it. Now,
+I know you mentioned you've looked at other solutions. Can you share where
+you are in that evaluation?
+
+[03:36] LISA: We're being transparent here. We've talked to Segment and
+we've had an initial call with HockeyStack. Segment is interesting but it
+feels very engineering-heavy to implement. Our engineering team has
+basically said they can give us two sprints max for this project, so
+anything that requires a six-month data engineering effort is a non-starter.
+
+[03:58] DEREK: HockeyStack had a good demo. Their analytics UI is slick.
+But when we asked about healthcare data compliance — HIPAA, BAA agreements
+— they couldn't give us a clear answer on the call. They said they'd get
+back to us. That was two weeks ago and we're still waiting.
+
+[04:16] JORDAN: That's really helpful context. The implementation timeline
+constraint and the compliance requirement — those are both areas where I
+think we're going to be strong. Let me address those directly. On
+implementation — our standard deployment for a company your size is four to
+six weeks, not six months. We handle the data pipeline configuration
+ourselves. Your engineering team would need about twenty hours total, mostly
+for API key provisioning and SSO setup. Not two sprints.
+
+[04:44] LISA: Twenty hours of engineering time? That's very different from
+what Segment was quoting.
+
+[04:50] JORDAN: Very different. And on the HIPAA side — we're already
+HIPAA-compliant with a signed BAA. We work with eleven health systems
+currently, including Northwell Health and Providence. Happy to provide
+references. Healthcare is actually our fastest-growing vertical.
+
+[05:06] LISA: That's good to hear. Northwell is a name I trust. Could we
+actually talk to someone there?
+
+[05:12] JORDAN: Absolutely. I'll set that up this week. Now let me ask
+about budget. You mentioned the two point three million in ad spend. Is
+there an allocated budget for the analytics tooling itself, or does this
+need to come from a separate line item?
+
+[05:28] LISA: We have budget. I got approval last quarter for a marketing
+analytics platform — the line item is three hundred thousand for the first
+year including implementation. That was based on some early research. Is
+that in the right ballpark for you?
+
+[05:44] JORDAN: Yes, we can work within that range. Our Growth tier, which
+is what I'd recommend based on your data volume and number of ad platforms,
+comes in at two forty annual with implementation included. So you'd be
+under budget.
+
+[05:58] LISA: Two forty all-in?
+
+[06:02] JORDAN: All-in for year one. That covers platform license, data
+integration setup, onboarding, and training. Year two renewal would be two
+ten since there's no implementation component.
+
+[06:14] DEREK: What's the typical uplift you see? I need to build the
+business case for the CFO and he's going to want hard ROI.
+
+[06:22] JORDAN: Great question. Across our healthcare customers, the
+average impact is threefold. First, teams reclaim twelve to twenty hours per
+week on reporting — which for you would free up most of that fifteen hours
+Derek mentioned. Second, accurate attribution typically reveals ten to
+fifteen percent of ad spend is going to campaigns that aren't converting,
+so customers reallocate and see a meaningful CPA reduction. On your two
+point three million spend, even a ten percent optimization is two hundred
+thirty thousand in savings — which almost pays for the platform on its own.
+Third, real-time optimization means you catch underperforming campaigns in
+days not weeks.
+
+[07:02] LISA: Two hundred thirty thousand in potential savings. That's a
+compelling number. Derek, does that math work?
+
+[07:08] DEREK: Yeah, it's conservative honestly. I know for a fact we have
+campaigns running right now that are basically vanity metrics — high
+impressions, low conversion. If we could actually prove that and shift the
+spend, ten percent is the floor not the ceiling.
+
+[07:24] JORDAN: Derek, that's exactly what we find. Most teams underestimate
+the waste because they've never had clean attribution data. Let me share a
+specific example. Providence Health — similar size, similar challenges. They
+were spending one point eight million on digital. Within ninety days of
+going live with BrightSignal, they identified three hundred twenty thousand
+in misattributed spend, shifted it, and brought their CPA down from two
+hundred ten to one forty-five. That's a thirty-one percent reduction. Their
+VP of Marketing, Anita Reeves, presented those numbers at HIMSS last year.
+
+[07:58] LISA: I actually saw Anita's presentation at HIMSS. I didn't
+realize that was BrightSignal behind it.
+
+[08:04] JORDAN: Small world. She's one of our biggest advocates. I can
+connect you directly if you want the unvarnished perspective.
+
+[08:12] LISA: Yes, please do. Both Northwell and Providence references
+would be great.
+
+[08:18] JORDAN: Done. Now, can I walk you through what a typical day looks
+like in the platform? I want to make sure it maps to how your team actually
+works. Derek, I'm especially curious about your workflow.
+
+[08:30] DEREK: Yeah, that would be helpful. My team lives in Google Ads
+and Meta Ads Manager all day. The last thing I want is another dashboard
+they have to check.
+
+[08:40] JORDAN: Totally understand. So that's actually a key design
+principle for us — we don't try to replace your ad platforms. We sit on top
+and unify the data. Your team keeps working in Google Ads and Meta, but
+they get a single source of truth for attribution. We also push insights
+directly into Slack. So instead of your team pulling reports, BrightSignal
+sends a daily digest to your Slack channel — here's what's working, here's
+what's not, here's the recommended reallocation. No new tab to open.
+
+[09:12] DEREK: That's huge. Slack-native reporting would save us so much
+time. Can it integrate with our existing Salesforce instance?
+
+[09:20] JORDAN: Yes. Salesforce is a native integration — we bidirectionally
+sync with it. So leads in Salesforce get enriched with accurate source
+attribution, and revenue data flows back to BrightSignal for closed-loop
+reporting. Your CFO's question — what's the ROI of marketing — gets
+answered in one dashboard, one number, sourced from actual revenue data.
+
+[09:42] LISA: One number. That's the dream. Right now I feel like I'm
+playing defense every board meeting. I want to go in with confidence.
+
+[09:50] JORDAN: And you should be able to. That's the whole point. Okay,
+let me ask about the decision process. You mentioned end of April for a
+decision. Who else needs to be involved? Is your CFO part of the final
+sign-off?
+
+[10:02] LISA: Yes. Our CFO, Mark Chen, has final budget approval for
+anything over a hundred thousand. He's supportive of the initiative — he's
+the one who approved the three hundred K line item — but he'll want to see
+the business case. Derek and I can champion this internally but Mark will
+need a meeting or at least a one-page summary.
+
+[10:22] JORDAN: Would it be helpful if we prepared a one-page executive
+summary specifically for Mark? We can include the Providence case study
+numbers, your specific projected ROI, and the implementation timeline. Make
+it easy for him to say yes.
+
+[10:36] LISA: That would be amazing. He responds well to concise, data-
+driven summaries. Keep it to one page and lead with the ROI math.
+
+[10:44] JORDAN: Perfect. I'll have that to you by Friday. Now, let me
+surface one potential concern — you mentioned your engineering team is
+constrained. We need a signed data processing agreement and BAA before we
+can start. Is your legal team typically fast or slow on those?
+
+[10:58] LISA: Legal is... legal. They usually take two to three weeks for a
+BAA review. But I can escalate if needed. If we're serious about an August
+go-live, I'd want to get legal started in parallel with the evaluation, not
+sequentially.
+
+[11:14] JORDAN: That's smart. I'd recommend the same thing. We can send
+over our standard BAA and DPA this week so legal can start their review
+while you're still in evaluation mode. That way it's not on the critical
+path.
+
+[11:26] LISA: Let's do that. Send it to me and I'll route it to our legal
+team tomorrow.
+
+[11:32] JORDAN: Will do. Okay, I want to be respectful of time. Let me
+recap what I'm hearing as next steps.
+
+[11:38] LISA: Please.
+
+[11:40] JORDAN: First, I'll send over the BAA and DPA by end of day
+tomorrow so legal can start. Second, I'll prepare the one-page executive
+summary for Mark with the ROI math and Providence case study — you'll have
+it by Friday. Third, I'll arrange reference calls with both Northwell and
+Providence — ideally next week. Fourth, I'd like to schedule a technical
+deep-dive for Derek and your team so we can walk through the Salesforce
+integration and Slack setup in detail. Would next Wednesday work for that?
+
+[12:10] DEREK: Next Wednesday afternoon works. Maybe two PM Pacific?
+
+[12:14] JORDAN: Two PM Pacific, Wednesday the twenty-fifth. I'll send the
+calendar invite today. And then fifth, I'll send over a formal proposal by
+end of next week with the Growth tier pricing we discussed. Does that all
+track?
+
+[12:28] LISA: That's perfect. You're thorough, I appreciate that. One more
+thing — is there any flexibility on the payment terms? Our procurement
+prefers net-sixty and annual billing rather than monthly.
+
+[12:40] JORDAN: Net-sixty is standard for us and annual billing is actually
+our preference as well. We can structure it as annual upfront or split into
+two semi-annual payments. I'll include both options in the proposal.
+
+[12:52] LISA: Great. Annual upfront with net-sixty would work. Let's go
+with that.
+
+[12:58] JORDAN: Noted. Lisa, Derek — this was a really productive
+conversation. I'm excited about the fit here. The attribution challenge
+you're facing is exactly what we built BrightSignal to solve, and the
+healthcare vertical is where we have the deepest expertise. I think we can
+get you to that August first go-live and have you walking into the next
+board meeting with one clean number.
+
+[13:18] LISA: I appreciate it, Jordan. The Providence reference and the
+HIPAA readiness are both strong differentiators. Honestly, if the reference
+calls go well, I think we can move fast on this.
+
+[13:28] DEREK: Agreed. I'm especially looking forward to the technical
+session. If the Salesforce integration and Slack workflows are as smooth as
+you described, this could be a game-changer for my team.
+
+[13:38] JORDAN: I'm confident it will be. And Derek, I'll make sure our SE
+brings a pre-configured demo environment that mirrors your Salesforce setup
+so we can show it with your actual field mappings.
+
+[13:48] DEREK: That would be great.
+
+[13:50] JORDAN: Awesome. Thanks both. Talk soon.
+
+[13:54] LISA: Thanks, Jordan. Looking forward to the proposal.
+
+[END OF RECORDING — 13:58]

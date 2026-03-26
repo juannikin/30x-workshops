@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workshop 2 — Tu AE AI: De Meeting a Cierre</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="../shared/theme.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- SLIDE 1 — Cover -->
+      <section>
+        <div class="cover-slide">
+          <h1>Tu AE AI</h1>
+          <h2 style="font-size:1.4em; color:#777; font-weight:400;">De Meeting a Cierre</h2>
+          <p class="subtitle">Workshop 2: Daily briefs, decks personalizados, proposals automatizados, pipeline health, reactivation sequences</p>
+          <p class="speaker">Juan Felipe Campos · GrowthMasters × 30x</p>
+        </div>
+      </section>
+
+      <!-- SLIDE 2 — El Problema -->
+      <section>
+        <h2>AEs gastan 60% en prep, no en vender</h2>
+        <div class="stats-row mt-3">
+          <div class="stat">
+            <div class="stat-number">60%</div>
+            <div class="stat-label">Research + prep</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">25%</div>
+            <div class="stat-label">Admin + CRM updates</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">15%</div>
+            <div class="stat-label">Vendiendo</div>
+          </div>
+        </div>
+        <div class="quote-box mt-3">
+          "El AE mas caro del mundo pasa la mayoria de su dia haciendo cosas que un AI puede hacer mejor y mas rapido. Libera ese tiempo."
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 3 — Cinco Pilares -->
+      <section>
+        <h2>Cinco Pilares del AE AI</h2>
+        <div class="pattern-steps mt-3">
+          <div class="pattern-step">
+            <h4>Research</h4>
+            <p>Daily briefs automaticos</p>
+          </div>
+          <div class="pattern-step">
+            <h4>Decks</h4>
+            <p>Personalizados por prospect</p>
+          </div>
+          <div class="pattern-step">
+            <h4>Proposals</h4>
+            <p>Drafts desde CRM + notes</p>
+          </div>
+          <div class="pattern-step">
+            <h4>Pipeline</h4>
+            <p>Health monitoring</p>
+          </div>
+          <div class="pattern-step" style="flex:1;">
+            <h4>Reactivation</h4>
+            <p>Deals frios → warm</p>
+          </div>
+        </div>
+        <p class="text-center mt-3 text-small text-muted">Cada pilar tiene su propio conjunto de MCP tools y AOP. Hoy construimos los 5.</p>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 4 — Arquitectura -->
+      <section>
+        <h2>Arquitectura del AE Agent</h2>
+        <div class="flow mt-2" style="justify-content:center; flex-wrap:wrap;">
+          <div class="step">CRM (Attio/Clarify)</div>
+          <div class="arrow">→</div>
+          <div class="step step-highlight">Claude Code</div>
+          <div class="arrow">→</div>
+          <div class="step">Deck Builder</div>
+          <div class="arrow">+</div>
+          <div class="step">Proposal Gen</div>
+          <div class="arrow">+</div>
+          <div class="step">Reactivation Engine</div>
+        </div>
+        <div class="two-column mt-3">
+          <div>
+            <h3 style="font-size:0.85em;">Inputs</h3>
+            <ul class="dash-list">
+              <li>CRM data (deals, contacts, activity)</li>
+              <li>Calendar (meetings de hoy)</li>
+              <li>Call transcripts (Granola)</li>
+              <li>Clay enrichment (noticias, hiring, tech)</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="font-size:0.85em;">Outputs</h3>
+            <ul class="dash-list">
+              <li>Morning briefs per meeting</li>
+              <li>Custom decks (Reveal.js)</li>
+              <li>Proposal drafts (Markdown/PDF)</li>
+              <li>Pipeline health reports</li>
+              <li>Reactivation sequences</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 5 — Buyer Framework -->
+      <section>
+        <h2>Buyer Framework: a quien le hablas importa</h2>
+        <p class="text-muted mb-2">Cada deliverable se ajusta al tipo de buyer</p>
+        <div class="three-column">
+          <div class="card">
+            <h3 style="font-size:0.9em;">Business Buyers</h3>
+            <p class="text-small" style="color:var(--navy);font-weight:600;">Motivacion: profit</p>
+            <ul class="dash-list">
+              <li>Aumentar revenue</li>
+              <li>Reducir costos</li>
+              <li>KPIs financieros</li>
+            </ul>
+            <p class="text-small text-muted mt-1">El deck habla de ROI, unit economics, payback period</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size:0.9em;">Technical Buyers</h3>
+            <p class="text-small" style="color:var(--navy);font-weight:600;">Motivacion: tiempo</p>
+            <ul class="dash-list">
+              <li>Reducir trabajo manual</li>
+              <li>Acelerar roadmap</li>
+              <li>Menos errores humanos</li>
+            </ul>
+            <p class="text-small text-muted mt-1">El deck habla de integracion, API, time-to-value, reliability</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size:0.9em;">ICs vs Decision Makers</h3>
+            <p class="text-small" style="color:var(--navy);font-weight:600;">IC: flow. DM: team perf.</p>
+            <ul class="dash-list">
+              <li>IC: menos tools, menos context switching</li>
+              <li>DM: accountability, visibility, metrics</li>
+              <li>Adapta el messaging al rol</li>
+            </ul>
+          </div>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 6 — Pilar 1: Daily Lead Research -->
+      <section>
+        <h2>Pilar 1: Daily Lead Research</h2>
+        <p class="text-muted mb-2">Cada manana: un brief para cada meeting del dia</p>
+        <div class="two-column">
+          <div>
+            <h3 style="font-size:0.9em;">El Brief Perfecto</h3>
+            <ul class="check-list">
+              <li><strong>Company overview:</strong> que hacen, headcount, funding</li>
+              <li><strong>Noticias recientes:</strong> press, hiring, product launches</li>
+              <li><strong>Tech stack:</strong> que usan, competidores nuestros?</li>
+              <li><strong>Mutual connections:</strong> quien conozco ahi?</li>
+              <li><strong>Pain points probables:</strong> inferidos de los datos</li>
+              <li><strong>Talk tracks sugeridos:</strong> como abrir la conversacion</li>
+              <li><strong>Deal history:</strong> que ya hablamos? CRM notes</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="font-size:0.9em;">Flujo automatico</h3>
+            <div class="flow" style="flex-direction:column; align-items:stretch;">
+              <div class="step" style="text-align:center;">7:00 AM — Pull meetings de Google Calendar</div>
+              <div class="step" style="text-align:center;">Enrich cada company via Clay</div>
+              <div class="step" style="text-align:center;">Pull CRM history de Attio/Clarify</div>
+              <div class="step step-highlight" style="text-align:center;">Generar brief en Slack/email</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 7 — DEMO: Auto-brief -->
+      <section>
+        <h2>DEMO: Auto-Brief para 3 Meetings</h2>
+        <div class="demo-callout">
+          <p><strong>Lo que vamos a hacer:</strong></p>
+          <ol class="numbered-list">
+            <li>Claude Code lee el calendar de hoy</li>
+            <li>Identifica 3 meetings con external attendees</li>
+            <li>Enrich cada empresa via Clay</li>
+            <li>Pull CRM notes de Attio/Clarify</li>
+            <li>Genera un brief de 1 pagina por meeting</li>
+          </ol>
+        </div>
+        <div class="code-block mt-2">
+> <span class="string">"Lee mi Google Calendar para hoy. Para cada meeting
+  con attendees externos: enrich la empresa con Clay,
+  pull las notas del CRM, y genera un brief de 1 pagina
+  con: company overview, noticias recientes, pain points,
+  talk tracks sugeridos, y deal history."</span>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 8 — Pilar 2: Decks personalizados -->
+      <section>
+        <h2>Pilar 2: Decks Personalizados</h2>
+        <p class="text-muted mb-2">Un deck custom por prospect — en 30 segundos, no 3 horas</p>
+        <div class="two-column">
+          <div>
+            <h3 style="font-size:0.9em;">El Concepto</h3>
+            <ul class="check-list">
+              <li>Template base con la brand de tu empresa</li>
+              <li>Variables inyectadas desde el CRM</li>
+              <li>Case study seleccionado por industry match</li>
+              <li>Pricing tier basado en el scoring</li>
+              <li>Pain points extraidos de calls anteriores</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="font-size:0.9em;">Variables del Template</h3>
+            <div class="code-block">
+<span class="string">{{company_name}}</span>
+<span class="string">{{industry}}</span>
+<span class="string">{{pain_points}}</span>  <span class="comment"># desde CRM + calls</span>
+<span class="string">{{case_study}}</span>   <span class="comment"># matched por industry</span>
+<span class="string">{{pricing_tier}}</span> <span class="comment"># desde scoring</span>
+<span class="string">{{competitor}}</span>   <span class="comment"># si usan competidor</span>
+<span class="string">{{next_steps}}</span>  <span class="comment"># sugeridos</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 9 — DEMO: Deck generation -->
+      <section>
+        <h2>DEMO: Deck desde CRM Data</h2>
+        <div class="demo-callout">
+          <p><strong>Lo que vamos a hacer:</strong></p>
+          <ol class="numbered-list">
+            <li>Pull datos de un deal en Attio/Clarify</li>
+            <li>Claude Code lee el template deck (Reveal.js)</li>
+            <li>Inyecta los datos del prospect en el template</li>
+            <li>Genera un deck personalizado de 8 slides</li>
+            <li>Deploy automatico en Vercel con URL unica</li>
+          </ol>
+        </div>
+        <div class="code-block mt-2">
+> <span class="string">"Lee el deal de 'Acme Corp' en Attio. Usa el template
+  en demos/02-ae/deck-template.html para generar un deck
+  personalizado. Inyecta: company name, pain points de las
+  call notes, case study de fintech (industry match), y
+  pricing tier basado en su score. Deploy en Vercel."</span>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 10 — Pilar 3: Proposals -->
+      <section>
+        <h2>Pilar 3: Proposals Automatizados</h2>
+        <p class="text-muted mb-2">Scope, pricing, timeline, terms — todo desde CRM + call notes</p>
+        <div class="two-column">
+          <div>
+            <h3 style="font-size:0.9em;">Que incluye el proposal</h3>
+            <ol class="numbered-list">
+              <li>Executive summary (pain + solution)</li>
+              <li>Scope of work (basado en calls)</li>
+              <li>Timeline y milestones</li>
+              <li>Pricing (tier-adjusted)</li>
+              <li>Terms y next steps</li>
+              <li>Case study relevante</li>
+            </ol>
+          </div>
+          <div>
+            <h3 style="font-size:0.9em;">De donde vienen los datos</h3>
+            <ul class="dash-list">
+              <li><strong>CRM:</strong> deal stage, contacts, activity history</li>
+              <li><strong>Call notes:</strong> pain points disclosed, budget, timeline</li>
+              <li><strong>Enrichment:</strong> company size, industry, tech stack</li>
+              <li><strong>Templates:</strong> pricing tiers, terms, legal boilerplate</li>
+            </ul>
+            <p class="text-small text-muted mt-1">El AI genera el draft. El AE humano revisa, ajusta, y envia.</p>
+          </div>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 11 — DEMO: Proposal draft -->
+      <section>
+        <h2>DEMO: Proposal Draft en 2 Minutos</h2>
+        <div class="demo-callout">
+          <p><strong>Lo que vamos a hacer:</strong></p>
+          <ol class="numbered-list">
+            <li>Pull deal data + call notes de un prospect</li>
+            <li>Claude Code genera el proposal completo en Markdown</li>
+            <li>Incluye pricing calculado por tier + scope mencionado en calls</li>
+            <li>Output: Markdown listo para convertir a PDF</li>
+          </ol>
+        </div>
+        <div class="code-block mt-2">
+> <span class="string">"Genera un proposal para el deal 'Acme Corp'.
+  Pull: CRM data de Attio, call notes de los ultimos
+  3 meetings, enrichment de Clay.
+  Usa el pricing tier 'Growth' ($13-20k/mo).
+  Formato: Markdown con executive summary, scope,
+  timeline, pricing, y next steps."</span>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 12 — Pilar 4: Pipeline Health -->
+      <section>
+        <h2>Pilar 4: Pipeline Health Monitoring</h2>
+        <div class="pipeline-health mt-2">
+          <div class="health-card health-green">
+            <div class="health-icon">&#x1F7E2;</div>
+            <h3 style="font-size:1em; color:var(--green);">Active</h3>
+            <p class="text-small">Meeting en los ultimos 7 dias. Next steps claros. Engagement alto.</p>
+          </div>
+          <div class="health-card health-yellow">
+            <div class="health-icon">&#x1F7E1;</div>
+            <h3 style="font-size:1em; color:var(--gold);">Cooling</h3>
+            <p class="text-small">Sin actividad 7-21 dias. Necesita touchpoint. Auto-reactivation sugerida.</p>
+          </div>
+          <div class="health-card health-red">
+            <div class="health-icon">&#x1F534;</div>
+            <h3 style="font-size:1em; color:var(--red);">Stale</h3>
+            <p class="text-small">21+ dias sin actividad. Reactivation sequence o close-lost review.</p>
+          </div>
+        </div>
+        <div class="mt-2">
+          <h3 style="font-size:0.9em;">Acciones automaticas por estado</h3>
+          <ul class="dash-list">
+            <li><strong>Green:</strong> generar follow-up email post-meeting, actualizar CRM notes</li>
+            <li><strong>Yellow:</strong> enviar contenido relevante, felicitar por noticias, proponer check-in</li>
+            <li><strong>Red:</strong> trigger reactivation sequence, escalar a manager, evaluar close-lost</li>
+          </ul>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 13 — DEMO: Pipeline scan -->
+      <section>
+        <h2>DEMO: Pipeline Scan + Acciones</h2>
+        <div class="demo-callout">
+          <p><strong>Lo que vamos a hacer:</strong></p>
+          <ol class="numbered-list">
+            <li>Claude Code lee todos los deals abiertos del CRM</li>
+            <li>Clasifica cada deal: Green / Yellow / Red</li>
+            <li>Para Yellow: genera touchpoint sugerido</li>
+            <li>Para Red: genera reactivation sequence</li>
+            <li>Output: reporte en Slack con acciones recomendadas</li>
+          </ol>
+        </div>
+        <div class="code-block mt-2">
+> <span class="string">"Escanea todos los deals abiertos en Attio.
+  Clasifica por health: Green (actividad < 7 dias),
+  Yellow (7-21 dias), Red (21+ dias).
+  Para cada Yellow: sugiere un touchpoint.
+  Para cada Red: genera una reactivation sequence de 3 emails.
+  Output como reporte en Slack."</span>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 14 — Pilar 5: Keep deals warm -->
+      <section>
+        <h2>Pilar 5: Keep Deals Warm + Battlecards</h2>
+        <div class="two-column mt-2">
+          <div>
+            <h3 style="font-size:0.9em;">Touchpoints automaticos</h3>
+            <ul class="check-list">
+              <li>Compartir articulo relevante por industry</li>
+              <li>Felicitar por funding round, hire, launch</li>
+              <li>Enviar case study de cliente similar</li>
+              <li>Proponer catch-up call trimestral</li>
+              <li>Invitar a webinar o evento</li>
+            </ul>
+            <p class="text-small text-muted mt-1">No es spam — es valor. Cada touchpoint tiene razon de ser basada en datos.</p>
+          </div>
+          <div>
+            <h3 style="font-size:0.9em;">Competitive Battlecards</h3>
+            <ul class="check-list">
+              <li>Auto-generadas desde win/loss data</li>
+              <li>Actualizadas con cada competitive mention en calls</li>
+              <li>Objection handling por competidor</li>
+              <li>Talk tracks: "Si mencionan X, responde Y"</li>
+            </ul>
+            <p class="text-small text-muted mt-1">El AI escucha tus calls y actualiza las battlecards automaticamente.</p>
+          </div>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 15 — CRM Automations -->
+      <section>
+        <h2>CRM Automations via Webhooks</h2>
+        <div class="ladder mt-2">
+          <div class="rung">
+            <div class="rung-number">1</div>
+            <div>
+              <strong>Deal stage change</strong> → Generar next action automaticamente<br>
+              <span class="text-small text-muted">"Deal movio a Proposal → generar draft de proposal"</span>
+            </div>
+          </div>
+          <div class="rung">
+            <div class="rung-number">2</div>
+            <div>
+              <strong>Note added</strong> → Update score + flag signals<br>
+              <span class="text-small text-muted">"AE agrego nota de meeting → extraer disclosed signals, actualizar score"</span>
+            </div>
+          </div>
+          <div class="rung">
+            <div class="rung-number">3</div>
+            <div>
+              <strong>Meeting completed</strong> → Generate follow-up<br>
+              <span class="text-small text-muted">"Meeting termino → generar email de follow-up con resumen y next steps"</span>
+            </div>
+          </div>
+          <div class="rung active">
+            <div class="rung-number">4</div>
+            <div>
+              <strong>Inactivity trigger</strong> → Auto-reactivation<br>
+              <span class="text-small text-muted">"14 dias sin actividad → iniciar secuencia de reactivacion"</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 16 — MCP Tools -->
+      <section>
+        <h2>MCP Tools del AE Agent</h2>
+        <div class="mcp-tools mt-2">
+          <div class="mcp-tool">get_todays_meetings()</div>
+          <div class="mcp-tool">generate_brief(meeting_id)</div>
+          <div class="mcp-tool">create_deck(deal_id, template)</div>
+          <div class="mcp-tool">draft_proposal(deal_id)</div>
+          <div class="mcp-tool">scan_pipeline(status_filter)</div>
+          <div class="mcp-tool">reactivate_deal(deal_id)</div>
+          <div class="mcp-tool">generate_battlecard(competitor)</div>
+          <div class="mcp-tool">send_followup(deal_id, type)</div>
+          <div class="mcp-tool">update_deal_health(deal_id, status)</div>
+          <div class="mcp-tool">generate_touchpoint(deal_id, reason)</div>
+        </div>
+        <p class="text-center mt-2 text-small text-muted">10 tools. El AOP define cuando y como combinarlos. El agente ejecuta, el AE supervisa.</p>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 17 — AOP del AE -->
+      <section>
+        <h2>El AOP del AE Agent</h2>
+        <div class="aop-highlight mt-1">
+          <h3>Rutina Diaria</h3>
+          <ul>
+            <li><strong>7:00 AM</strong> — get_todays_meetings() → generate_brief() para cada meeting</li>
+            <li><strong>8:00 AM</strong> — scan_pipeline('yellow') → generate_touchpoint() para deals cooling</li>
+            <li><strong>9:00 AM</strong> — Check post-meeting transcripts → send_followup()</li>
+            <li><strong>5:00 PM</strong> — Reporte diario en Slack: meetings prep'd, followups sent, pipeline health</li>
+          </ul>
+        </div>
+        <div class="aop-highlight mt-1">
+          <h3>Rutina Semanal</h3>
+          <ul>
+            <li><strong>Lunes AM</strong> — scan_pipeline('all') → full health report</li>
+            <li><strong>Miercoles</strong> — scan_pipeline('red') → reactivate_deal() para stale deals</li>
+            <li><strong>Viernes PM</strong> — generate_battlecard() updates desde calls de la semana</li>
+          </ul>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 18 — Trust Ladder -->
+      <section>
+        <h2>Trust Ladder del AE Agent</h2>
+        <div class="ladder mt-2">
+          <div class="rung">
+            <div class="rung-number">1</div>
+            <div>
+              <strong>Read-only: briefs y reportes</strong><br>
+              <span class="text-small text-muted">El AI genera, el humano lee. Cero riesgo. Empiezas aqui.</span>
+            </div>
+          </div>
+          <div class="rung">
+            <div class="rung-number">2</div>
+            <div>
+              <strong>Draft generation: decks y proposals</strong><br>
+              <span class="text-small text-muted">El AI genera borradores. El humano revisa, edita y envia.</span>
+            </div>
+          </div>
+          <div class="rung active">
+            <div class="rung-number">3</div>
+            <div>
+              <strong>Auto-send: follow-ups y touchpoints</strong><br>
+              <span class="text-small text-muted">El AI envia directamente post-meeting follow-ups y warm touches. Solo despues de demostrar consistencia.</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-center mt-2 text-small">"No es pure automation — es un AI que se gana tu confianza manejando edge cases sin romper nada."</p>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 19 — EJERCICIO -->
+      <section>
+        <h2>EJERCICIO: Configura tu Morning Brief</h2>
+        <div class="hands-on">
+          <p><strong>Haz esto ahora:</strong></p>
+          <ol class="numbered-list">
+            <li>Conecta tu Google Calendar a Claude Code</li>
+            <li>Conecta tu CRM (Attio, Clarify, o el que uses)</li>
+            <li>Pide a Claude Code que genere briefs para tus meetings de manana</li>
+            <li>Revisa los briefs — son utiles? Que falta?</li>
+            <li>Bonus: genera un deck personalizado para tu proximo meeting</li>
+          </ol>
+        </div>
+        <div class="code-block mt-2">
+> <span class="string">"Lee mis meetings de manana en Google Calendar.
+  Para cada meeting externo, genera un brief con:
+  company overview, noticias recientes, pain points,
+  deal history del CRM, y 3 talk tracks sugeridos."</span>
+        </div>
+        <div class="slide-footer">GrowthMasters · 30x Workshop 2 · AE AI Stage</div>
+      </section>
+
+      <!-- SLIDE 20 — Cierre -->
+      <section>
+        <div class="closing-slide">
+          <h2>AE Humano + AE AI<br>= <span class="highlight">Superpoder</span></h2>
+          <p class="mt-2" style="font-size:0.9em; color:#777; max-width:22em;">
+            El humano se enfoca en relacion, negociacion y estrategia.<br>
+            El AI hace todo lo demas.
+          </p>
+          <p class="mt-2 text-small text-muted">Siguiente: Workshop 3 — Tus Calls Son Oro</p>
+          <div class="contact">
+            Juan Felipe Campos · growthmasters.io · 30x.org
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="../shared/reveal-config.js"></script>
+</body>
+</html>

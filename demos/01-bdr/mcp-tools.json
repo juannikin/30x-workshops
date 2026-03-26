@@ -1,0 +1,511 @@
+{
+  "schema_version": "1.0",
+  "toolset": "bdr-agent",
+  "description": "MCP tool definitions for the BDR AI Agent. These tools are invoked by Claude Code during autonomous BDR workflows.",
+
+  "tools": [
+    {
+      "name": "list_leads",
+      "description": "Retrieve leads from the CRM, optionally filtered by stage, score, or date range. Returns a paginated list of lead records.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "stage": {
+            "type": "string",
+            "enum": ["new", "enriched", "sequencing", "replied", "meeting_booked", "qualified", "closed_lost", "nurture"],
+            "description": "Filter leads by pipeline stage."
+          },
+          "min_score": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Minimum lead score to include."
+          },
+          "max_score": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Maximum lead score to include."
+          },
+          "created_after": {
+            "type": "string",
+            "format": "date",
+            "description": "Only return leads created on or after this date (ISO 8601)."
+          },
+          "created_before": {
+            "type": "string",
+            "format": "date",
+            "description": "Only return leads created on or before this date (ISO 8601)."
+          },
+          "limit": {
+            "type": "integer",
+            "default": 50,
+            "minimum": 1,
+            "maximum": 200,
+            "description": "Number of leads to return per page."
+          },
+          "offset": {
+            "type": "integer",
+            "default": 0,
+            "description": "Pagination offset."
+          }
+        },
+        "required": []
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "leads": { "type": "array", "items": { "$ref": "#/$defs/Lead" } },
+          "total": { "type": "integer" },
+          "has_more": { "type": "boolean" }
+        }
+      }
+    },
+
+    {
+      "name": "enrich_lead",
+      "description": "Enrich a single lead with firmographic and contact data using Clay, Exa, or other data providers. Returns the lead record with new fields populated.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "lead_id": {
+            "type": "string",
+            "description": "Unique identifier of the lead to enrich."
+          },
+          "domain": {
+            "type": "string",
+            "description": "Company domain to look up (used if lead_id is not provided)."
+          },
+          "enrich_fields": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["revenue", "tech_stack", "recent_news", "hiring_signals", "funding", "social_profiles", "employee_count", "competitors"]
+            },
+            "default": ["revenue", "tech_stack", "recent_news", "hiring_signals"],
+            "description": "Which enrichment fields to populate."
+          },
+          "providers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["clay", "exa", "clearbit", "apollo", "zoominfo"]
+            },
+            "default": ["clay", "exa"],
+            "description": "Data providers to use for enrichment, in priority order."
+          }
+        },
+        "required": ["lead_id"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "lead_id": { "type": "string" },
+          "enriched_fields": { "type": "object" },
+          "provider_used": { "type": "string" },
+          "confidence": { "type": "string", "enum": ["high", "medium", "low"] }
+        }
+      }
+    },
+
+    {
+      "name": "score_lead",
+      "description": "Calculate a lead score (0-100) based on ICP fit, firmographics, engagement signals, and contact seniority. Uses the scoring weights defined in the AOP.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "lead_id": {
+            "type": "string",
+            "description": "Unique identifier of the lead to score."
+          },
+          "override_weights": {
+            "type": "object",
+            "properties": {
+              "icp_fit": { "type": "number", "minimum": 0, "maximum": 1 },
+              "funding_stage": { "type": "number", "minimum": 0, "maximum": 1 },
+              "employee_count": { "type": "number", "minimum": 0, "maximum": 1 },
+              "hiring_signal": { "type": "number", "minimum": 0, "maximum": 1 },
+              "recent_news": { "type": "number", "minimum": 0, "maximum": 1 },
+              "title_seniority": { "type": "number", "minimum": 0, "maximum": 1 }
+            },
+            "description": "Optional weight overrides (must sum to 1.0). If omitted, default AOP weights are used."
+          }
+        },
+        "required": ["lead_id"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "lead_id": { "type": "string" },
+          "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+          "breakdown": {
+            "type": "object",
+            "properties": {
+              "icp_fit": { "type": "integer" },
+              "funding_stage": { "type": "integer" },
+              "employee_count": { "type": "integer" },
+              "hiring_signal": { "type": "integer" },
+              "recent_news": { "type": "integer" },
+              "title_seniority": { "type": "integer" }
+            }
+          },
+          "tier": { "type": "string", "enum": ["hot", "warm", "cold"] }
+        }
+      }
+    },
+
+    {
+      "name": "generate_sequence",
+      "description": "Generate a personalized multi-step outreach sequence for a lead. Returns email copy and LinkedIn messages for the configured number of steps.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "lead_id": {
+            "type": "string",
+            "description": "Unique identifier of the enriched lead."
+          },
+          "sequence_template": {
+            "type": "string",
+            "enum": ["standard_5step", "aggressive_3step", "nurture_7step", "referral_followup"],
+            "default": "standard_5step",
+            "description": "Which sequence template to use."
+          },
+          "tone": {
+            "type": "string",
+            "enum": ["professional", "casual", "executive", "technical"],
+            "default": "professional",
+            "description": "Tone to use for generated copy."
+          },
+          "value_prop_focus": {
+            "type": "string",
+            "description": "Specific value proposition to emphasize in the sequence (e.g., 'reduce pipeline build time by 70%')."
+          }
+        },
+        "required": ["lead_id"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "lead_id": { "type": "string" },
+          "sequence_id": { "type": "string" },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "step_number": { "type": "integer" },
+                "day": { "type": "integer" },
+                "channel": { "type": "string" },
+                "subject": { "type": "string" },
+                "body": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "name": "send_email",
+      "description": "Send an email through the Instantly API. Supports plain text and HTML, open/click tracking, and threading.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "to_email": {
+            "type": "string",
+            "format": "email",
+            "description": "Recipient email address."
+          },
+          "from_email": {
+            "type": "string",
+            "format": "email",
+            "description": "Sender email address (must be a warmed-up Instantly mailbox)."
+          },
+          "subject": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "Email subject line."
+          },
+          "body_text": {
+            "type": "string",
+            "description": "Plain text body."
+          },
+          "body_html": {
+            "type": "string",
+            "description": "HTML body (optional, falls back to body_text)."
+          },
+          "in_reply_to": {
+            "type": "string",
+            "description": "Message-ID to thread this email under (for follow-ups)."
+          },
+          "campaign_id": {
+            "type": "string",
+            "description": "Instantly campaign ID for tracking."
+          },
+          "track_opens": { "type": "boolean", "default": true },
+          "track_clicks": { "type": "boolean", "default": false },
+          "schedule_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Schedule send time (ISO 8601). If omitted, sends immediately within the send window."
+          }
+        },
+        "required": ["to_email", "from_email", "subject", "body_text"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "message_id": { "type": "string" },
+          "status": { "type": "string", "enum": ["sent", "scheduled", "failed"] },
+          "sent_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+
+    {
+      "name": "send_linkedin",
+      "description": "Send a LinkedIn connection request or direct message via the Unipile API.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": ["connection_request", "direct_message", "inmail"],
+            "description": "Type of LinkedIn action."
+          },
+          "linkedin_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "LinkedIn profile URL of the recipient."
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 500,
+            "description": "Message body. For connection requests, max 300 characters."
+          },
+          "account_id": {
+            "type": "string",
+            "description": "Unipile account ID to send from."
+          }
+        },
+        "required": ["action", "linkedin_url", "message", "account_id"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "action_id": { "type": "string" },
+          "status": { "type": "string", "enum": ["sent", "pending", "failed", "already_connected"] },
+          "linkedin_url": { "type": "string" }
+        }
+      }
+    },
+
+    {
+      "name": "classify_reply",
+      "description": "Classify an inbound reply email to determine prospect intent. Returns a label, confidence score, and recommended next action.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "from_email": {
+            "type": "string",
+            "format": "email",
+            "description": "Sender's email address."
+          },
+          "subject": {
+            "type": "string",
+            "description": "Email subject line."
+          },
+          "body": {
+            "type": "string",
+            "description": "Full text body of the reply."
+          },
+          "thread_context": {
+            "type": "string",
+            "description": "Previous emails in the thread for context."
+          },
+          "lead_id": {
+            "type": "string",
+            "description": "Associated lead ID for enrichment context."
+          }
+        },
+        "required": ["from_email", "subject", "body"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "intent": {
+            "type": "string",
+            "enum": ["interested", "not_interested", "objection", "wrong_person", "out_of_office", "unsubscribe", "question", "referral"]
+          },
+          "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+          "recommended_action": { "type": "string" },
+          "extracted_info": {
+            "type": "object",
+            "description": "Any useful info extracted from the reply (e.g., return date, referred person, objection type)."
+          }
+        }
+      }
+    },
+
+    {
+      "name": "book_meeting",
+      "description": "Create a calendar event on Google Calendar and send invites to attendees. Used after a prospect expresses interest.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "lead_id": {
+            "type": "string",
+            "description": "Lead ID to associate the meeting with."
+          },
+          "title": {
+            "type": "string",
+            "description": "Calendar event title (e.g., 'Intro: 30x <> Acme Corp')."
+          },
+          "start_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Meeting start time (ISO 8601)."
+          },
+          "duration_minutes": {
+            "type": "integer",
+            "default": 30,
+            "enum": [15, 30, 45, 60],
+            "description": "Meeting duration."
+          },
+          "timezone": {
+            "type": "string",
+            "default": "America/New_York",
+            "description": "Timezone for the meeting (IANA format)."
+          },
+          "attendees": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "email": { "type": "string", "format": "email" },
+                "name": { "type": "string" },
+                "optional": { "type": "boolean", "default": false }
+              },
+              "required": ["email"]
+            },
+            "description": "List of attendees to invite."
+          },
+          "description": {
+            "type": "string",
+            "description": "Meeting description / agenda."
+          },
+          "video_link": {
+            "type": "string",
+            "format": "uri",
+            "description": "Video conference link. If omitted, Google Meet is auto-created."
+          }
+        },
+        "required": ["lead_id", "title", "start_time", "attendees"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "event_id": { "type": "string" },
+          "calendar_link": { "type": "string", "format": "uri" },
+          "video_link": { "type": "string", "format": "uri" },
+          "status": { "type": "string", "enum": ["confirmed", "tentative", "failed"] }
+        }
+      }
+    },
+
+    {
+      "name": "update_lead_stage",
+      "description": "Move a lead to a new pipeline stage in the CRM. Logs the transition with a timestamp.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "lead_id": {
+            "type": "string",
+            "description": "Unique identifier of the lead."
+          },
+          "new_stage": {
+            "type": "string",
+            "enum": ["new", "enriched", "sequencing", "replied", "meeting_booked", "qualified", "closed_lost", "nurture"],
+            "description": "Target pipeline stage."
+          },
+          "reason": {
+            "type": "string",
+            "description": "Reason for the stage change (for audit trail)."
+          }
+        },
+        "required": ["lead_id", "new_stage"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "lead_id": { "type": "string" },
+          "previous_stage": { "type": "string" },
+          "new_stage": { "type": "string" },
+          "updated_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+
+    {
+      "name": "add_lead_note",
+      "description": "Add a timestamped note to a lead's activity log. Used for recording observations, call summaries, or agent reasoning.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "lead_id": {
+            "type": "string",
+            "description": "Unique identifier of the lead."
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 2000,
+            "description": "The note content."
+          },
+          "note_type": {
+            "type": "string",
+            "enum": ["observation", "call_summary", "agent_reasoning", "escalation", "system"],
+            "default": "observation",
+            "description": "Category of the note."
+          },
+          "author": {
+            "type": "string",
+            "default": "bdr-agent",
+            "description": "Who is adding the note (agent ID or human name)."
+          }
+        },
+        "required": ["lead_id", "note"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "note_id": { "type": "string" },
+          "lead_id": { "type": "string" },
+          "created_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  ],
+
+  "$defs": {
+    "Lead": {
+      "type": "object",
+      "properties": {
+        "lead_id": { "type": "string" },
+        "company_name": { "type": "string" },
+        "domain": { "type": "string" },
+        "industry": { "type": "string" },
+        "hq_location": { "type": "string" },
+        "employee_count": { "type": "integer" },
+        "funding_stage": { "type": "string" },
+        "linkedin_url": { "type": "string", "format": "uri" },
+        "contact_name": { "type": "string" },
+        "contact_title": { "type": "string" },
+        "contact_email": { "type": "string", "format": "email" },
+        "lead_score": { "type": "integer" },
+        "stage": { "type": "string" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

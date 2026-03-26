@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GrowthMasters × 30x — AI-First GTM Workshops</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B2A4A;
+      --orange-start: #e67e22;
+      --orange-end: #ff7c09;
+      --charcoal: #32373c;
+      --off-white: #f8f9fa;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Source Sans Pro', sans-serif;
+      background: var(--off-white);
+      color: var(--charcoal);
+      min-height: 100vh;
+    }
+
+    /* Orange top bar */
+    body::before {
+      content: '';
+      display: block;
+      height: 4px;
+      background: linear-gradient(90deg, var(--orange-start), var(--orange-end));
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3em 2em;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3em;
+    }
+
+    header h1 {
+      font-size: 2.4em;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.1;
+      margin-bottom: 0.3em;
+    }
+
+    header .subtitle {
+      font-size: 1.15em;
+      color: #777;
+      max-width: 32em;
+      margin: 0 auto;
+    }
+
+    header .logos {
+      margin-top: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1em;
+      font-size: 0.9em;
+      color: #999;
+    }
+
+    header .logos span {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .decks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5em;
+      margin-bottom: 3em;
+    }
+
+    .deck-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      padding: 2em;
+      text-decoration: none;
+      color: var(--charcoal);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-top: 4px solid var(--navy);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .deck-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+    }
+
+    .deck-card .deck-number {
+      font-size: 0.7em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--orange-start);
+      margin-bottom: 0.5em;
+    }
+
+    .deck-card h2 {
+      font-size: 1.35em;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.4em;
+      line-height: 1.2;
+    }
+
+    .deck-card p {
+      font-size: 0.85em;
+      color: #777;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    .deck-card .deck-meta {
+      margin-top: 1.2em;
+      font-size: 0.7em;
+      color: #bbb;
+      display: flex;
+      gap: 1.5em;
+    }
+
+    .deck-card:first-child {
+      border-top-color: var(--orange-start);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8em;
+      color: #bbb;
+      padding: 2em 0;
+      border-top: 1px solid #eee;
+    }
+
+    footer a {
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+      .decks {
+        grid-template-columns: 1fr;
+      }
+      header h1 {
+        font-size: 1.8em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AI-First GTM Workshops</h1>
+      <p class="subtitle">Workshops practicos para construir tu motor de go-to-market con IA. Del concepto a la ejecucion.</p>
+      <div class="logos">
+        <span>GrowthMasters</span> &times; <span>30x</span>
+      </div>
+    </header>
+
+    <div class="decks">
+      <a href="/deck-0-intro/" class="deck-card">
+        <div class="deck-number">Fundamentos</div>
+        <h2>AI-First GTM: Del Concepto a la Ejecucion</h2>
+        <p>Configura tu stack moderno: Claude Code, Supabase, Vercel, CRM via MCP. Aprende el patron repetible: Build → AOP → MCP → AI.</p>
+        <div class="deck-meta">
+          <span>18 slides</span>
+          <span>60–90 min</span>
+        </div>
+      </a>
+
+      <a href="/deck-1-bdr-agent/" class="deck-card">
+        <div class="deck-number">Workshop 1</div>
+        <h2>Tu BDR AI que Nunca Duerme</h2>
+        <p>Construye un agente BDR/SDR end-to-end: sourcing, scoring, copy, secuencias omnichannel, appointment setting.</p>
+        <div class="deck-meta">
+          <span>20 slides</span>
+          <span>60–90 min</span>
+        </div>
+      </a>
+
+      <a href="/deck-2-ae-stage/" class="deck-card">
+        <div class="deck-number">Workshop 2</div>
+        <h2>Tu AE AI — De Meeting a Cierre</h2>
+        <p>Daily briefs, decks personalizados, proposals automatizados, pipeline health monitoring, reactivation sequences.</p>
+        <div class="deck-meta">
+          <span>20 slides</span>
+          <span>60–90 min</span>
+        </div>
+      </a>
+
+      <a href="/deck-3-transcripts/" class="deck-card">
+        <div class="deck-number">Workshop 3</div>
+        <h2>Tus Calls Son Oro</h2>
+        <p>Convierte transcripts de calls en decks, landing pages, LinkedIn posts, ad copy y CRM intelligence.</p>
+        <div class="deck-meta">
+          <span>18 slides</span>
+          <span>60–90 min</span>
+        </div>
+      </a>
+    </div>
+
+    <footer>
+      <p>Juan Felipe Campos &middot; <a href="https://growthmasters.io">growthmasters.io</a> &middot; <a href="https://30x.org">30x.org</a></p>
+    </footer>
+  </div>
+</body>
+</html>

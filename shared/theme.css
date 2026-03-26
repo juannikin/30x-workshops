@@ -1,0 +1,788 @@
+/* ==========================================================================
+   GrowthMasters × 30x Workshop — Design System
+   Ported from openclaw-deck.vercel.app + workshop extensions
+   ========================================================================== */
+
+/* ---------- Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap');
+
+/* ---------- Custom Properties ---------- */
+:root {
+  --navy:         #1B2A4A;
+  --blue-start:   #0966c2;
+  --blue-end:     #1c87f4;
+  --orange-start: #e67e22;
+  --orange-end:   #ff7c09;
+  --charcoal:     #32373c;
+  --off-white:    #f8f9fa;
+  --green:        #27AE60;
+  --red:          #D53429;
+  --gold:         #f39c12;
+  --light-gray:   #e8e8e8;
+}
+
+/* ---------- Reveal.js Base Overrides ---------- */
+.reveal {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 32px;
+  color: var(--charcoal);
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+  color: var(--navy);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.reveal h1 { font-size: 2.6em; }
+.reveal h2 { font-size: 2.0em; margin-bottom: 0.4em; }
+.reveal h3 { font-size: 1.6em; margin-bottom: 0.3em; }
+
+.reveal p {
+  line-height: 1.5;
+  margin-bottom: 0.6em;
+}
+
+.reveal strong {
+  color: var(--navy);
+}
+
+.reveal code, .reveal pre {
+  font-family: 'Courier New', monospace;
+}
+
+.reveal a {
+  color: var(--blue-start);
+  text-decoration: none;
+}
+
+.reveal a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Orange Top Bar ---------- */
+.reveal .slides section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--orange-start), var(--orange-end));
+  z-index: 10;
+}
+
+/* Hide bar on first and last slides */
+.reveal .slides section:first-child::before,
+.reveal .slides section:last-child::before {
+  display: none;
+}
+
+/* ---------- Footer ---------- */
+.reveal .slide-footer {
+  position: absolute;
+  bottom: 18px;
+  left: 60px;
+  font-size: 0.55em;
+  color: #999;
+  letter-spacing: 0.05em;
+}
+
+/* Hide footer on first and last slides */
+.reveal .slides section:first-child .slide-footer,
+.reveal .slides section:last-child .slide-footer {
+  display: none;
+}
+
+/* ---------- Highlight ---------- */
+.highlight {
+  background: linear-gradient(90deg, var(--orange-start), var(--orange-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.highlight-underline {
+  background-image: linear-gradient(90deg, rgba(230, 126, 34, 0.25), rgba(255, 124, 9, 0.25));
+  background-repeat: no-repeat;
+  background-size: 100% 30%;
+  background-position: 0 88%;
+  padding: 0 4px;
+}
+
+/* ---------- Layout: Two Column ---------- */
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5em;
+  align-items: start;
+}
+
+.three-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2em;
+  align-items: start;
+}
+
+/* ---------- Layout: Flex Row ---------- */
+.flex-row {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+}
+
+.flex-row > * {
+  flex: 1;
+}
+
+/* ---------- Stats Row ---------- */
+.stats-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+}
+
+.stats-row .stat {
+  text-align: center;
+  padding: 0 2em;
+  border-right: 2px solid var(--light-gray);
+}
+
+.stats-row .stat:last-child {
+  border-right: none;
+}
+
+.stats-row .stat-number {
+  font-size: 2.4em;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1;
+}
+
+.stats-row .stat-label {
+  font-size: 0.75em;
+  color: #777;
+  margin-top: 0.3em;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 9px rgba(0, 0, 0, 0.12);
+  padding: 1.5em;
+}
+
+.card-navy {
+  background: var(--navy);
+  color: #fff;
+}
+
+.card-navy h3, .card-navy strong {
+  color: #fff;
+}
+
+.card-orange {
+  background: linear-gradient(135deg, var(--orange-start), var(--orange-end));
+  color: #fff;
+}
+
+.card-orange h3, .card-orange strong {
+  color: #fff;
+}
+
+/* ---------- Grade Cards (A/B/C/D/F) ---------- */
+.grade-cards {
+  display: flex;
+  gap: 1em;
+}
+
+.grade-card {
+  flex: 1;
+  border-radius: 10px;
+  padding: 1em;
+  text-align: center;
+  font-weight: 700;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.grade-card.grade-a { background: #27AE60; color: #fff; }
+.grade-card.grade-b { background: #2ECC71; color: #fff; }
+.grade-card.grade-c { background: #F39C12; color: #fff; }
+.grade-card.grade-d { background: #E67E22; color: #fff; }
+.grade-card.grade-f { background: #D53429; color: #fff; }
+
+.grade-card .grade-letter {
+  font-size: 2em;
+  line-height: 1;
+}
+
+.grade-card .grade-label {
+  font-size: 0.65em;
+  font-weight: 400;
+  margin-top: 0.3em;
+}
+
+/* ---------- Tier Cards ---------- */
+.tier-cards {
+  display: flex;
+  gap: 1em;
+}
+
+.tier-card {
+  flex: 1;
+  border-radius: 10px;
+  padding: 1.2em;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tier-card.tier-1 {
+  background: var(--navy);
+  color: #fff;
+  border-top: 4px solid var(--gold);
+}
+
+.tier-card.tier-2 {
+  background: #fff;
+  border-top: 4px solid var(--blue-start);
+}
+
+.tier-card.tier-3 {
+  background: #fff;
+  border-top: 4px solid var(--light-gray);
+}
+
+.tier-card h4 {
+  margin: 0 0 0.4em;
+  font-size: 1em;
+}
+
+.tier-card.tier-1 h4 { color: var(--gold); }
+
+.tier-card ul {
+  font-size: 0.75em;
+  margin: 0;
+  padding-left: 1em;
+}
+
+/* ---------- Flow (Horizontal Steps) ---------- */
+.flow {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  flex-wrap: wrap;
+}
+
+.flow .step {
+  background: var(--navy);
+  color: #fff;
+  padding: 0.6em 1.2em;
+  border-radius: 8px;
+  font-size: 0.8em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.flow .step.step-highlight {
+  background: linear-gradient(135deg, var(--orange-start), var(--orange-end));
+}
+
+.flow .arrow {
+  font-size: 1.4em;
+  color: var(--navy);
+  font-weight: 700;
+}
+
+/* ---------- Ladder (Vertical Steps) ---------- */
+.ladder {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
+
+.ladder .rung {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 0.8em 1.2em;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid var(--navy);
+}
+
+.ladder .rung-number {
+  font-size: 1.4em;
+  font-weight: 900;
+  color: var(--navy);
+  min-width: 1.5em;
+  text-align: center;
+}
+
+.ladder .rung.active {
+  border-left-color: var(--orange-start);
+  background: #fff8f0;
+}
+
+.ladder .rung.active .rung-number {
+  color: var(--orange-start);
+}
+
+/* ---------- Pattern Steps (Horizontal Numbered) ---------- */
+.pattern-steps {
+  display: flex;
+  gap: 1.5em;
+  counter-reset: pattern;
+}
+
+.pattern-steps .pattern-step {
+  flex: 1;
+  text-align: center;
+  counter-increment: pattern;
+}
+
+.pattern-steps .pattern-step::before {
+  content: counter(pattern);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1em;
+  margin: 0 auto 0.5em;
+}
+
+.pattern-steps .pattern-step h4 {
+  font-size: 0.85em;
+  color: var(--navy);
+  margin-bottom: 0.3em;
+}
+
+.pattern-steps .pattern-step p {
+  font-size: 0.65em;
+  color: #666;
+}
+
+/* ---------- Numbered List ---------- */
+.numbered-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: numbered;
+}
+
+.numbered-list li {
+  counter-increment: numbered;
+  display: flex;
+  align-items: baseline;
+  gap: 0.8em;
+  margin-bottom: 0.6em;
+  font-size: 0.85em;
+}
+
+.numbered-list li::before {
+  content: counter(numbered);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85em;
+  flex-shrink: 0;
+}
+
+/* ---------- Check List ---------- */
+.check-list {
+  list-style: none;
+  padding: 0;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 1.8em;
+  margin-bottom: 0.5em;
+  font-size: 0.85em;
+}
+
+.check-list li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 1.1em;
+}
+
+/* ---------- Dash List ---------- */
+.dash-list {
+  list-style: none;
+  padding: 0;
+}
+
+.dash-list li {
+  position: relative;
+  padding-left: 1.5em;
+  margin-bottom: 0.5em;
+  font-size: 0.85em;
+}
+
+.dash-list li::before {
+  content: '\2014';
+  position: absolute;
+  left: 0;
+  color: var(--orange-start);
+  font-weight: 700;
+}
+
+/* ---------- DEMO EN VIVO Callout ---------- */
+.demo-callout {
+  background: #fff8f0;
+  border-left: 5px solid var(--orange-start);
+  border-radius: 0 10px 10px 0;
+  padding: 1.2em 1.5em;
+  margin: 1em 0;
+}
+
+.demo-callout::before {
+  content: 'DEMO EN VIVO';
+  display: inline-block;
+  background: linear-gradient(135deg, var(--orange-start), var(--orange-end));
+  color: #fff;
+  font-size: 0.6em;
+  font-weight: 700;
+  padding: 0.2em 0.8em;
+  border-radius: 4px;
+  margin-bottom: 0.6em;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- EJERCICIO Callout ---------- */
+.hands-on {
+  background: #f0faf4;
+  border-left: 5px solid var(--green);
+  border-radius: 0 10px 10px 0;
+  padding: 1.2em 1.5em;
+  margin: 1em 0;
+}
+
+.hands-on::before {
+  content: 'EJERCICIO PRACTICO';
+  display: inline-block;
+  background: var(--green);
+  color: #fff;
+  font-size: 0.6em;
+  font-weight: 700;
+  padding: 0.2em 0.8em;
+  border-radius: 4px;
+  margin-bottom: 0.6em;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Tool Badge ---------- */
+.tool-badge {
+  display: inline-block;
+  background: var(--off-white);
+  border: 1px solid var(--light-gray);
+  border-radius: 20px;
+  padding: 0.15em 0.7em;
+  font-size: 0.6em;
+  font-weight: 600;
+  color: var(--charcoal);
+  white-space: nowrap;
+  margin: 0.15em;
+}
+
+.tool-badge.badge-primary {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+
+/* ---------- Code Block ---------- */
+.code-block {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border-radius: 10px;
+  padding: 1.2em 1.5em;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7em;
+  line-height: 1.6;
+  overflow-x: auto;
+  text-align: left;
+}
+
+.code-block .comment { color: #6c7086; }
+.code-block .keyword { color: #cba6f7; }
+.code-block .string  { color: #a6e3a1; }
+.code-block .func    { color: #89b4fa; }
+.code-block .flag    { color: #f9e2af; }
+
+/* ---------- Before / After ---------- */
+.before-after {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+}
+
+.before-after .before {
+  background: #fdf2f2;
+  border-left: 4px solid var(--red);
+  border-radius: 0 10px 10px 0;
+  padding: 1.2em;
+}
+
+.before-after .after {
+  background: #f0faf4;
+  border-left: 4px solid var(--green);
+  border-radius: 0 10px 10px 0;
+  padding: 1.2em;
+}
+
+.before-after .label {
+  font-size: 0.6em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5em;
+}
+
+.before-after .before .label { color: var(--red); }
+.before-after .after .label  { color: var(--green); }
+
+/* ---------- Dramatic / Impact Statement ---------- */
+.dramatic {
+  text-align: center;
+  padding: 1em;
+}
+
+.dramatic h2 {
+  font-size: 2.4em;
+  line-height: 1.2;
+}
+
+.dramatic-large {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.dramatic-large h2 {
+  font-size: 3em;
+  line-height: 1.15;
+  max-width: 16em;
+}
+
+/* ---------- AOP Highlight Block ---------- */
+.aop-highlight {
+  background: var(--navy);
+  color: #fff;
+  border-radius: 10px;
+  padding: 1.5em 2em;
+  margin: 1em 0;
+}
+
+.aop-highlight h3 {
+  color: var(--gold);
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5em;
+}
+
+.aop-highlight ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.aop-highlight li {
+  font-size: 0.8em;
+  margin-bottom: 0.3em;
+  color: #ddd;
+}
+
+/* ---------- Architecture Diagram Container ---------- */
+.architecture-diagram {
+  text-align: center;
+  padding: 1em 0;
+}
+
+.architecture-diagram img {
+  max-width: 100%;
+  max-height: 500px;
+  border-radius: 10px;
+}
+
+/* ---------- Quote Box ---------- */
+.quote-box {
+  background: var(--off-white);
+  border-left: 5px solid var(--orange-start);
+  border-radius: 0 10px 10px 0;
+  padding: 1em 1.5em;
+  font-style: italic;
+  font-size: 1.1em;
+  color: var(--navy);
+}
+
+.quote-box .attribution {
+  font-style: normal;
+  font-size: 0.65em;
+  color: #999;
+  margin-top: 0.5em;
+}
+
+/* ---------- Logo Bar ---------- */
+.logo-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  padding: 1em 0;
+}
+
+.logo-bar img {
+  height: 28px;
+  filter: grayscale(100%);
+  opacity: 0.55;
+}
+
+/* ---------- Cover Slide ---------- */
+.cover-slide {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.cover-slide h1 {
+  font-size: 2.8em;
+  margin-bottom: 0.2em;
+}
+
+.cover-slide .subtitle {
+  font-size: 1em;
+  color: #777;
+  max-width: 20em;
+  margin: 0 auto;
+}
+
+.cover-slide .speaker {
+  margin-top: 2em;
+  font-size: 0.75em;
+  color: #999;
+}
+
+.cover-slide .logos {
+  margin-top: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+}
+
+/* ---------- Closing Slide ---------- */
+.closing-slide {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.closing-slide h2 {
+  font-size: 2.6em;
+  margin-bottom: 0.3em;
+}
+
+.closing-slide .contact {
+  font-size: 0.75em;
+  color: #999;
+  margin-top: 1.5em;
+}
+
+/* ---------- Pipeline Health (Traffic Light) ---------- */
+.pipeline-health {
+  display: flex;
+  gap: 1.2em;
+}
+
+.pipeline-health .health-card {
+  flex: 1;
+  border-radius: 10px;
+  padding: 1.2em;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pipeline-health .health-green  { background: #f0faf4; border-top: 4px solid var(--green); }
+.pipeline-health .health-yellow { background: #fffbf0; border-top: 4px solid var(--gold); }
+.pipeline-health .health-red    { background: #fdf2f2; border-top: 4px solid var(--red); }
+
+.pipeline-health .health-icon {
+  font-size: 2em;
+  margin-bottom: 0.3em;
+}
+
+/* ---------- MCP Tool List ---------- */
+.mcp-tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5em;
+}
+
+.mcp-tool {
+  background: #1e1e2e;
+  color: #89b4fa;
+  font-family: 'Courier New', monospace;
+  font-size: 0.65em;
+  padding: 0.4em 0.8em;
+  border-radius: 6px;
+  border-left: 3px solid var(--orange-start);
+}
+
+/* ---------- Utility ---------- */
+.text-center { text-align: center; }
+.text-small  { font-size: 0.75em; }
+.text-muted  { color: #999; }
+.mt-1 { margin-top: 0.5em; }
+.mt-2 { margin-top: 1em; }
+.mt-3 { margin-top: 2em; }
+.mb-1 { margin-bottom: 0.5em; }
+.mb-2 { margin-bottom: 1em; }
+
+/* ---------- Responsive image ---------- */
+.reveal img {
+  max-height: 550px;
+  border-radius: 10px;
+}
+
+.reveal img.no-shadow {
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* ---------- Slide number ---------- */
+.reveal .slide-number {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 14px;
+  color: #bbb;
+}

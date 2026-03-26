@@ -1,0 +1,5 @@
+.DS_Store
+*.ogg
+*.rtf
+node_modules/
+.vercel/

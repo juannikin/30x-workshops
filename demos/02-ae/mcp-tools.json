@@ -1,0 +1,560 @@
+{
+  "name": "ae-agent-tools",
+  "version": "1.0.0",
+  "description": "MCP tool definitions for the AE (Account Executive) agent. 10 tools covering the full AE workflow: morning prep, deal management, content generation, and pipeline operations.",
+  "tools": [
+    {
+      "name": "get_todays_meetings",
+      "description": "Retrieve today's meetings from Google Calendar with attendee details, meeting type, and linked CRM records. Returns structured meeting data including external vs. internal classification.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date to pull meetings for. Defaults to today. Format: YYYY-MM-DD."
+          },
+          "calendar_id": {
+            "type": "string",
+            "description": "Google Calendar ID. Defaults to primary calendar."
+          },
+          "include_internal": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to include internal-only meetings in the result."
+          }
+        },
+        "required": []
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "meetings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "title": { "type": "string" },
+                "start_time": { "type": "string", "format": "date-time" },
+                "end_time": { "type": "string", "format": "date-time" },
+                "attendees": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": { "type": "string" },
+                      "email": { "type": "string" },
+                      "company": { "type": "string" },
+                      "title": { "type": "string" },
+                      "is_external": { "type": "boolean" }
+                    }
+                  }
+                },
+                "meeting_type": {
+                  "type": "string",
+                  "enum": ["discovery", "demo", "proposal_review", "negotiation", "qbr", "internal", "other"]
+                },
+                "linked_deal_id": { "type": "string" },
+                "video_link": { "type": "string" }
+              }
+            }
+          },
+          "total_count": { "type": "integer" },
+          "external_count": { "type": "integer" }
+        }
+      }
+    },
+    {
+      "name": "generate_brief",
+      "description": "Generate a morning brief combining calendar, CRM deal context, recent emails, and action items into a single structured document. Enriches each meeting with deal data and risk signals.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date for the brief. Defaults to today."
+          },
+          "rep_id": {
+            "type": "string",
+            "description": "Sales rep identifier for CRM and calendar lookup."
+          },
+          "include_pipeline_alerts": {
+            "type": "boolean",
+            "default": true,
+            "description": "Include pipeline risk alerts in the brief."
+          },
+          "lookback_hours": {
+            "type": "integer",
+            "default": 48,
+            "description": "Hours to look back for email and Slack activity."
+          }
+        },
+        "required": ["rep_id"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "brief_markdown": { "type": "string" },
+          "meeting_count": { "type": "integer" },
+          "priority_deals": { "type": "integer" },
+          "action_items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "task": { "type": "string" },
+                "deal": { "type": "string" },
+                "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+                "due": { "type": "string" }
+              }
+            }
+          },
+          "alerts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": { "type": "string" },
+                "company": { "type": "string" },
+                "detail": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "create_deck",
+      "description": "Generate a custom Reveal.js sales deck from CRM data, matched case study, and a deck template. Outputs a personalized HTML presentation with all variables injected.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "deal_id": {
+            "type": "string",
+            "description": "CRM deal identifier to pull prospect data from."
+          },
+          "template_path": {
+            "type": "string",
+            "default": "demos/02-ae/deck-template.html",
+            "description": "Path to the Reveal.js HTML template."
+          },
+          "case_study_override": {
+            "type": "string",
+            "description": "Force a specific case study instead of auto-matching. Pass the case study company name."
+          },
+          "include_competitor_slide": {
+            "type": "boolean",
+            "default": false,
+            "description": "Add a competitive comparison slide if competitor data is available."
+          },
+          "pricing_tier_override": {
+            "type": "string",
+            "enum": ["starter", "growth", "enterprise"],
+            "description": "Override the auto-detected pricing tier."
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["html", "pdf", "both"],
+            "default": "html",
+            "description": "Output file format."
+          }
+        },
+        "required": ["deal_id"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string" },
+          "slide_count": { "type": "integer" },
+          "case_study_used": { "type": "string" },
+          "personalizations_applied": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "variables_injected": { "type": "integer" },
+          "warnings": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    {
+      "name": "draft_proposal",
+      "description": "Generate a complete sales proposal in Markdown from CRM deal data, call notes, and product specifications. Includes executive summary, scope, timeline, pricing, and next steps.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "deal_id": {
+            "type": "string",
+            "description": "CRM deal identifier."
+          },
+          "pricing_override": {
+            "type": "object",
+            "properties": {
+              "tier": { "type": "string" },
+              "annual_amount": { "type": "number" },
+              "discount_pct": { "type": "number" }
+            },
+            "description": "Override auto-detected pricing with specific values."
+          },
+          "include_case_study": {
+            "type": "boolean",
+            "default": true,
+            "description": "Include a matched case study in the proposal."
+          },
+          "validity_days": {
+            "type": "integer",
+            "default": 30,
+            "description": "Number of days the proposal remains valid."
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["markdown", "pdf", "html"],
+            "default": "markdown"
+          }
+        },
+        "required": ["deal_id"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string" },
+          "proposal_markdown": { "type": "string" },
+          "total_value": { "type": "number" },
+          "sections_generated": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "pain_points_addressed": { "type": "integer" },
+          "case_study_used": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "scan_pipeline",
+      "description": "Scan the full pipeline, classify each deal as GREEN/YELLOW/RED based on activity recency, stage duration, and engagement signals. Returns prioritized action recommendations.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "rep_id": {
+            "type": "string",
+            "description": "Sales rep identifier."
+          },
+          "scope": {
+            "type": "string",
+            "enum": ["all", "closing_this_month", "closing_this_quarter", "red_only", "yellow_and_red"],
+            "default": "all",
+            "description": "Filter scope for the scan."
+          },
+          "include_movement_report": {
+            "type": "boolean",
+            "default": true,
+            "description": "Include a 7-day pipeline movement summary."
+          },
+          "quota_amount": {
+            "type": "number",
+            "description": "Quarterly quota for coverage ratio calculation."
+          }
+        },
+        "required": ["rep_id"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "report_markdown": { "type": "string" },
+          "summary": {
+            "type": "object",
+            "properties": {
+              "total_deals": { "type": "integer" },
+              "total_value": { "type": "number" },
+              "weighted_value": { "type": "number" },
+              "green": { "type": "integer" },
+              "yellow": { "type": "integer" },
+              "red": { "type": "integer" },
+              "coverage_ratio": { "type": "number" }
+            }
+          },
+          "red_deals": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "deal_id": { "type": "string" },
+                "company": { "type": "string" },
+                "amount": { "type": "number" },
+                "risk_factors": { "type": "array", "items": { "type": "string" } },
+                "recommended_actions": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          },
+          "recommended_focus_today": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    {
+      "name": "reactivate_deal",
+      "description": "Generate a reactivation sequence for a stalled or lost deal. Produces a multi-touch outreach plan with personalized messaging based on the original deal context and reason for stalling.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "deal_id": {
+            "type": "string",
+            "description": "CRM deal identifier for the stalled/lost deal."
+          },
+          "stall_reason": {
+            "type": "string",
+            "enum": ["gone_dark", "lost_to_competitor", "budget_freeze", "champion_left", "timing", "no_decision", "other"],
+            "description": "Primary reason the deal stalled."
+          },
+          "new_trigger": {
+            "type": "string",
+            "description": "New trigger event justifying reactivation (e.g., 'new funding round', 'champion returned', 'competitor price increase')."
+          },
+          "sequence_length": {
+            "type": "integer",
+            "default": 5,
+            "description": "Number of touches in the reactivation sequence."
+          }
+        },
+        "required": ["deal_id", "stall_reason"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "sequence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "day": { "type": "integer" },
+                "channel": { "type": "string", "enum": ["email", "phone", "linkedin", "video"] },
+                "subject": { "type": "string" },
+                "body": { "type": "string" },
+                "rationale": { "type": "string" }
+              }
+            }
+          },
+          "alternate_contacts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "title": { "type": "string" },
+                "reason": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "generate_battlecard",
+      "description": "Generate a competitive battlecard for a specific competitor based on CRM deal history, win/loss data, and product intelligence. Includes talk tracks, objection handlers, and trap-setting questions.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "competitor_name": {
+            "type": "string",
+            "description": "Name of the competitor to generate a battlecard for."
+          },
+          "deal_id": {
+            "type": "string",
+            "description": "Optional deal ID to contextualize the battlecard for a specific opportunity."
+          },
+          "focus_areas": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["pricing", "features", "support", "security", "integrations", "scalability", "ease_of_use"]
+            },
+            "description": "Specific areas to emphasize in the battlecard."
+          }
+        },
+        "required": ["competitor_name"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "battlecard_markdown": { "type": "string" },
+          "competitor_overview": { "type": "string" },
+          "strengths_vs_us": { "type": "array", "items": { "type": "string" } },
+          "weaknesses_vs_us": { "type": "array", "items": { "type": "string" } },
+          "trap_questions": { "type": "array", "items": { "type": "string" } },
+          "objection_handlers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "objection": { "type": "string" },
+                "response": { "type": "string" }
+              }
+            }
+          },
+          "win_rate_vs_competitor": { "type": "number" },
+          "recent_wins": { "type": "integer" },
+          "recent_losses": { "type": "integer" }
+        }
+      }
+    },
+    {
+      "name": "send_followup",
+      "description": "Generate and optionally send a post-meeting follow-up email based on meeting notes, CRM context, and agreed next steps. Supports draft mode (save to drafts) or send mode.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "deal_id": {
+            "type": "string",
+            "description": "CRM deal identifier."
+          },
+          "meeting_notes": {
+            "type": "string",
+            "description": "Raw meeting notes or transcript summary."
+          },
+          "action_items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "task": { "type": "string" },
+                "owner": { "type": "string" },
+                "due_date": { "type": "string" }
+              }
+            },
+            "description": "Action items agreed during the meeting."
+          },
+          "tone": {
+            "type": "string",
+            "enum": ["formal", "conversational", "executive"],
+            "default": "conversational",
+            "description": "Email tone."
+          },
+          "mode": {
+            "type": "string",
+            "enum": ["draft", "send"],
+            "default": "draft",
+            "description": "Whether to save as draft or send immediately."
+          },
+          "cc": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Additional email addresses to CC."
+          }
+        },
+        "required": ["deal_id", "meeting_notes"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "email_subject": { "type": "string" },
+          "email_body": { "type": "string" },
+          "recipients": { "type": "array", "items": { "type": "string" } },
+          "status": { "type": "string", "enum": ["drafted", "sent", "error"] },
+          "draft_link": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "update_deal_health",
+      "description": "Update a deal's health score and status in the CRM based on the latest signals. Logs the assessment rationale and triggers alerts if health degrades.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "deal_id": {
+            "type": "string",
+            "description": "CRM deal identifier."
+          },
+          "health_status": {
+            "type": "string",
+            "enum": ["green", "yellow", "red"],
+            "description": "New health classification."
+          },
+          "risk_factors": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Current risk factors for this deal."
+          },
+          "recommended_actions": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Recommended next actions."
+          },
+          "notes": {
+            "type": "string",
+            "description": "Free-text assessment notes."
+          },
+          "notify_manager": {
+            "type": "boolean",
+            "default": false,
+            "description": "Send alert to sales manager if true."
+          }
+        },
+        "required": ["deal_id", "health_status"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "deal_id": { "type": "string" },
+          "previous_health": { "type": "string" },
+          "new_health": { "type": "string" },
+          "health_changed": { "type": "boolean" },
+          "alert_sent": { "type": "boolean" },
+          "updated_at": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    {
+      "name": "generate_touchpoint",
+      "description": "Generate a personalized touchpoint message for a deal based on a trigger event, content share, or check-in cadence. Supports email, LinkedIn, and phone script formats.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "deal_id": {
+            "type": "string",
+            "description": "CRM deal identifier."
+          },
+          "touchpoint_type": {
+            "type": "string",
+            "enum": ["trigger_event", "content_share", "check_in", "value_add", "social_proof", "urgency"],
+            "description": "Type of touchpoint to generate."
+          },
+          "channel": {
+            "type": "string",
+            "enum": ["email", "linkedin", "phone_script", "video_script"],
+            "default": "email",
+            "description": "Delivery channel for the touchpoint."
+          },
+          "trigger_context": {
+            "type": "string",
+            "description": "Context for the trigger event (e.g., 'prospect company raised Series C', 'new blog post about their pain point')."
+          },
+          "content_url": {
+            "type": "string",
+            "description": "URL to content being shared, if touchpoint_type is content_share."
+          }
+        },
+        "required": ["deal_id", "touchpoint_type", "channel"]
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "subject": { "type": "string" },
+          "body": { "type": "string" },
+          "channel": { "type": "string" },
+          "personalization_signals_used": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "suggested_send_time": { "type": "string" },
+          "follow_up_if_no_response": { "type": "string" }
+        }
+      }
+    }
+  ]
+}

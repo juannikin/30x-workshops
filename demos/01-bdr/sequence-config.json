@@ -1,0 +1,195 @@
+{
+  "sequence": {
+    "name": "BDR AI Agent — 5-Step Omnichannel Sequence",
+    "description": "Automated outbound sequence combining email (Instantly) and LinkedIn (Unipile) touchpoints over 12 days.",
+    "version": "1.0",
+    "created_at": "2026-03-25",
+    "tags": ["outbound", "omnichannel", "bdr-agent"],
+    "settings": {
+      "timezone": "America/New_York",
+      "send_window": {
+        "start": "08:00",
+        "end": "17:00",
+        "days": ["monday", "tuesday", "wednesday", "thursday", "friday"]
+      },
+      "throttle": {
+        "max_emails_per_day": 40,
+        "max_linkedin_actions_per_day": 25,
+        "delay_between_sends_seconds": 120
+      },
+      "stop_on_reply": true,
+      "stop_on_bounce": true,
+      "stop_on_out_of_office": false
+    }
+  },
+
+  "steps": [
+    {
+      "step": 1,
+      "day": 1,
+      "channel": "email",
+      "provider": "instantly",
+      "action": "send_email",
+      "template_key": "hook",
+      "config": {
+        "from_alias": "{{sender_name}}",
+        "from_email": "{{sender_email}}",
+        "to_email": "{{contact_email}}",
+        "subject": "{{email_1_subject}}",
+        "body_html": "{{email_1_body}}",
+        "track_opens": true,
+        "track_clicks": true,
+        "instantly_campaign_id": "{{instantly_campaign_id}}"
+      },
+      "notes": "The Hook — short, curiosity-driven first touch."
+    },
+    {
+      "step": 2,
+      "day": 3,
+      "channel": "linkedin",
+      "provider": "unipile",
+      "action": "send_connection_request",
+      "template_key": "linkedin_connect",
+      "config": {
+        "linkedin_profile_url": "{{contact_linkedin_url}}",
+        "message": "{{linkedin_connect_message}}",
+        "unipile_account_id": "{{unipile_account_id}}"
+      },
+      "constraints": {
+        "skip_if_already_connected": true,
+        "max_message_length": 300
+      },
+      "notes": "LinkedIn connection request with short personalized note. If already connected, send InMail instead."
+    },
+    {
+      "step": 3,
+      "day": 5,
+      "channel": "email",
+      "provider": "instantly",
+      "action": "send_email",
+      "template_key": "value_drop",
+      "config": {
+        "from_alias": "{{sender_name}}",
+        "from_email": "{{sender_email}}",
+        "to_email": "{{contact_email}}",
+        "subject": "Re: {{email_1_subject}}",
+        "body_html": "{{email_2_body}}",
+        "in_reply_to": "{{email_1_message_id}}",
+        "track_opens": true,
+        "track_clicks": false,
+        "instantly_campaign_id": "{{instantly_campaign_id}}"
+      },
+      "notes": "The Value Drop — same thread as Email 1, share proof point or case study."
+    },
+    {
+      "step": 4,
+      "day": 8,
+      "channel": "linkedin",
+      "provider": "unipile",
+      "action": "send_message",
+      "template_key": "linkedin_nudge",
+      "config": {
+        "linkedin_profile_url": "{{contact_linkedin_url}}",
+        "message": "{{linkedin_nudge_message}}",
+        "unipile_account_id": "{{unipile_account_id}}"
+      },
+      "constraints": {
+        "require_connection": true,
+        "fallback_if_not_connected": "skip",
+        "max_message_length": 500
+      },
+      "notes": "LinkedIn DM nudge. Only fires if connection was accepted. Reference the email thread."
+    },
+    {
+      "step": 5,
+      "day": 12,
+      "channel": "email",
+      "provider": "instantly",
+      "action": "send_email",
+      "template_key": "breakup",
+      "config": {
+        "from_alias": "{{sender_name}}",
+        "from_email": "{{sender_email}}",
+        "to_email": "{{contact_email}}",
+        "subject": "Closing the loop",
+        "body_html": "{{email_3_body}}",
+        "track_opens": true,
+        "track_clicks": false,
+        "instantly_campaign_id": "{{instantly_campaign_id}}"
+      },
+      "notes": "The Breakup — low-pressure final touch offering to reconnect next quarter."
+    }
+  ],
+
+  "reply_handling": {
+    "provider": "instantly",
+    "webhook_url": "{{reply_webhook_url}}",
+    "classification": {
+      "tool": "classify_reply",
+      "categories": [
+        {
+          "label": "interested",
+          "action": "pause_sequence_and_notify",
+          "next_step": "book_meeting"
+        },
+        {
+          "label": "not_interested",
+          "action": "stop_sequence",
+          "next_step": "update_lead_stage_to_closed_lost"
+        },
+        {
+          "label": "wrong_person",
+          "action": "stop_sequence",
+          "next_step": "find_correct_contact_and_restart"
+        },
+        {
+          "label": "out_of_office",
+          "action": "pause_sequence",
+          "resume_after_days": 5
+        },
+        {
+          "label": "unsubscribe",
+          "action": "stop_sequence_and_suppress",
+          "next_step": "add_to_suppression_list"
+        },
+        {
+          "label": "objection",
+          "action": "pause_sequence_and_notify",
+          "next_step": "escalate_to_human"
+        }
+      ]
+    }
+  },
+
+  "providers": {
+    "instantly": {
+      "base_url": "https://api.instantly.ai/api/v1",
+      "auth": "Bearer {{INSTANTLY_API_KEY}}",
+      "warmup_enabled": true,
+      "daily_ramp": {
+        "start": 10,
+        "increment": 5,
+        "max": 40
+      }
+    },
+    "unipile": {
+      "base_url": "https://api.unipile.com/api/v1",
+      "auth": "Bearer {{UNIPILE_API_KEY}}",
+      "rate_limit": {
+        "connections_per_day": 20,
+        "messages_per_day": 25
+      }
+    }
+  },
+
+  "variables": {
+    "sender_name": "Jordan Mitchell",
+    "sender_email": "jordan@30x.agency",
+    "sender_title": "Growth Strategist",
+    "sender_company": "30x",
+    "booking_link": "https://cal.com/30x/intro",
+    "reply_webhook_url": "https://hooks.30x.agency/replies",
+    "instantly_campaign_id": "",
+    "unipile_account_id": ""
+  }
+}

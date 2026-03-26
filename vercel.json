@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/intro", "destination": "/deck-0-intro/index.html" },
+    { "source": "/bdr-agent", "destination": "/deck-1-bdr-agent/index.html" },
+    { "source": "/ae-stage", "destination": "/deck-2-ae-stage/index.html" },
+    { "source": "/transcripts", "destination": "/deck-3-transcripts/index.html" }
+  ]
+}
