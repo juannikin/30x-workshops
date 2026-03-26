@@ -104,18 +104,18 @@
       <!-- SLIDE 4 — Arquitectura -->
       <section data-footer="GrowthMasters · 30x Workshop 1 · BDR AI Agent">
         <h2>Arquitectura del BDR Agent</h2>
-        <div class="flow mt-3" style="justify-content:center; flex-wrap:wrap;">
-          <div class="step">Exa + Clay</div>
-          <div class="arrow">→</div>
-          <div class="step">Motor de Scoring</div>
-          <div class="arrow">→</div>
-          <div class="step step-highlight">Claude (Copy)</div>
-          <div class="arrow">→</div>
-          <div class="step">Instantly (Email)</div>
-          <div class="arrow">+</div>
-          <div class="step">Unipile (LinkedIn)</div>
-          <div class="arrow">→</div>
-          <div class="step">Calendario</div>
+        <div class="data-flow mt-2">
+          <div class="flow-node">Exa + Clay</div>
+          <div class="flow-connector"></div>
+          <div class="flow-node">Scoring</div>
+          <div class="flow-connector"></div>
+          <div class="flow-node" style="background:linear-gradient(135deg,var(--orange-start),var(--orange-end));color:#fff;border-color:var(--orange-start);">Claude (Copy)</div>
+          <div class="flow-connector"></div>
+          <div class="flow-node">Instantly</div>
+          <div class="flow-connector"></div>
+          <div class="flow-node">LinkedIn</div>
+          <div class="flow-connector"></div>
+          <div class="flow-node">Calendar</div>
         </div>
         <div style="display:flex; align-items:center; justify-content:center; gap:2em; margin-top:1em;">
           <img src="../assets/logos/tools/si-supabase-color.svg" style="height:32px;" class="no-shadow" alt="Exa">
@@ -302,12 +302,22 @@
             <li>Resultado: 30 emails listos para cargar en <img src="../assets/logos/tools/instantly.png" class="no-shadow" style="height:16px;vertical-align:middle;margin-right:0.2em;border-radius:3px;" alt="Instantly">Instantly</li>
           </ol>
         </div>
-        <div class="code-block mt-2" style="white-space:pre-wrap;">
-> <span class="string">"Con el CSV de leads enriquecidos, genera una secuencia
-  de 3 emails para cada lead. Email 1: intro + hook
-  basado en recent_news. Email 2: caso de estudio relevante.
-  Email 3: despedida. Tono: profesional pero humano.
-  Output como CSV listo para Instantly."</span>
+        <div class="terminal-sim" style="margin-top:1em;">
+          <div class="terminal-bar">
+            <div class="terminal-dot red"></div>
+            <div class="terminal-dot yellow"></div>
+            <div class="terminal-dot green"></div>
+            <span class="terminal-title">Terminal — claude</span>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line"><span class="terminal-prompt">></span> <span class="terminal-highlight">"Genera 3 emails por lead desde enriched-leads.csv"</span></div>
+            <div class="terminal-line"><span class="terminal-output">Leyendo CSV... 10 leads encontrados</span></div>
+            <div class="terminal-line"><span class="terminal-output">Generando para Rappi (Tier A)...</span></div>
+            <div class="terminal-line"><span class="terminal-success">✓ 3 emails → Rappi</span></div>
+            <div class="terminal-line"><span class="terminal-output">Generando para Clara (Tier B)...</span></div>
+            <div class="terminal-line"><span class="terminal-success">✓ 3 emails → Clara</span></div>
+            <div class="terminal-line"><span class="terminal-success">✓ 30 emails listos → emails-instantly.csv</span> <span class="terminal-cursor"></span></div>
+          </div>
         </div>
       </section>
 
@@ -512,6 +522,18 @@
             <li><strong>2:00 PM</strong> — Segunda revision de respuestas → agendamiento para positivos</li>
             <li><strong>5:00 PM</strong> — Reporte en Slack: actividad del dia, reuniones agendadas, escalaciones</li>
           </ul>
+        </div>
+        
+        <div class="agent-timeline mt-1">
+          <div class="timeline-hours"><span>7 AM</span><span>8 AM</span><span>9 AM</span><span>10 AM</span><span>2 PM</span><span>5 PM</span></div>
+          <div class="timeline-track"></div>
+          <div class="timeline-blocks">
+            <div class="timeline-block">Revisar replies<br>Clasificar + responder</div>
+            <div class="timeline-block">Nuevos leads<br>Enrich + score</div>
+            <div class="timeline-block">Copy + envio<br>Email + LinkedIn</div>
+            <div class="timeline-block">2do check<br>replies</div>
+            <div class="timeline-block">Reporte Slack<br>Resumen del dia</div>
+          </div>
         </div>
         <div class="two-column mt-2">
           <div>

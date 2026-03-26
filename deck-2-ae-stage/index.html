@@ -44,6 +44,16 @@
         <div class="quote-box mt-3">
           "El AE mas caro del mundo pasa la mayoria de su dia haciendo cosas que un AI puede hacer mejor y mas rapido. Libera ese tiempo."
         </div>
+        <div class="time-compare mt-2">
+          <div class="time-bar-row">
+            <div class="time-bar-label">Prep manual</div>
+            <div class="time-bar-track"><div class="time-bar-fill manual" style="width:85%;">45 min por meeting</div></div>
+          </div>
+          <div class="time-bar-row">
+            <div class="time-bar-label">Con AI</div>
+            <div class="time-bar-track"><div class="time-bar-fill ai" style="width:7%;">2 min</div></div>
+          </div>
+        </div>
       </section>
 
       <!-- SLIDE 3 — Cinco Pilares -->
@@ -77,16 +87,25 @@
       <!-- SLIDE 4 — Arquitectura -->
       <section data-footer="GrowthMasters · 30x Workshop 2 · AE AI Stage">
         <h2>Arquitectura del AE Agent</h2>
-        <div class="flow mt-2" style="justify-content:center; flex-wrap:wrap;">
-          <div class="step">CRM (Attio/Clarify)</div>
-          <div class="arrow">→</div>
-          <div class="step step-highlight">Claude Code</div>
-          <div class="arrow">→</div>
-          <div class="step">Generador de Decks</div>
-          <div class="arrow">+</div>
-          <div class="step">Generador de Proposals</div>
-          <div class="arrow">+</div>
-          <div class="step">Motor de Reactivacion</div>
+        <div class="data-flow mt-2">
+          <div class="flow-node">CRM (Attio/Clarify)</div>
+          <div class="flow-connector"></div>
+          <div class="flow-node" style="background:linear-gradient(135deg,var(--orange-start),var(--orange-end));color:#fff;border-color:var(--orange-start);">Claude Code</div>
+          <div class="flow-connector"></div>
+          <div class="flow-node">Deck Builder</div>
+          <div class="flow-connector"></div>
+          <div class="flow-node">Proposal Gen</div>
+          <div class="flow-connector"></div>
+          <div class="flow-node">Reactivation</div>
+        </div>
+          <div class="flow-connector"></div>
+          <div class="flow-node" style="background:linear-gradient(135deg,var(--orange-start),var(--orange-end));color:#fff;border-color:var(--orange-start);">Claude Code</div>
+          <div class="flow-connector"></div>
+          <div class="flow-node">Deck Builder</div>
+          <div class="flow-connector"></div>
+          <div class="flow-node">Proposal Gen</div>
+          <div class="flow-connector"></div>
+          <div class="flow-node">Reactivation</div>
         </div>
         <div style="display:flex; align-items:center; justify-content:center; gap:2em; margin-top:1em;">
           <img src="../assets/logos/tools/si-anthropic-color.svg" style="height:32px;" class="no-shadow" alt="Claude">
@@ -555,6 +574,19 @@
             <li><strong>Miercoles</strong> — scan_pipeline('red') → reactivate_deal() para deals inactivos</li>
             <li><strong>Viernes PM</strong> — generate_battlecard() actualizaciones desde calls de la semana</li>
           </ul>
+        </div>
+        <div class="agent-timeline mt-1">
+          <div class="timeline-hours">
+            <span>7 AM</span><span>8 AM</span><span>9 AM</span><span>12 PM</span><span>3 PM</span><span>5 PM</span>
+          </div>
+          <div class="timeline-track"></div>
+          <div class="timeline-blocks">
+            <div class="timeline-block">7 AM<br>Morning briefs<br>para cada meeting</div>
+            <div class="timeline-block">8 AM<br>Pipeline scan<br>deals enfriandose</div>
+            <div class="timeline-block">9 AM-12 PM<br>Post-meeting<br>follow-ups</div>
+            <div class="timeline-block">3 PM<br>Reactivation<br>deals inactivos</div>
+            <div class="timeline-block">5 PM<br>Reporte diario<br>Slack</div>
+          </div>
         </div>
       </section>
 

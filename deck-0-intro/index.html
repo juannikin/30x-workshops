@@ -87,6 +87,17 @@
             <p class="text-small text-muted mt-1">Hoy vas a aprender a construir tu propio motor de GTM con IA. No teoria — vas a salir con algo funcionando.</p>
           </div>
         </div>
+      
+        <div class="time-compare mt-2">
+          <div class="time-bar-row">
+            <div class="time-bar-label">Manual</div>
+            <div class="time-bar-track"><div class="time-bar-fill manual" style="width:90%;">45 min por lead</div></div>
+          </div>
+          <div class="time-bar-row">
+            <div class="time-bar-label">Con AI</div>
+            <div class="time-bar-track"><div class="time-bar-fill ai" style="width:8%;">30 seg</div></div>
+          </div>
+        </div>
       </section>
 
       
@@ -229,14 +240,23 @@
             <li>Ver como genera el schema, las funciones y le hace deploy</li>
           </ol>
         </div>
-        <div class="code-block mt-2" style="white-space:pre-wrap;">
-<span class="keyword">npm</span> install -g <span class="string">@anthropic-ai/claude-code</span>
-<span class="keyword">claude</span>
-
-> <span class="string">"Crea un proyecto nuevo en Supabase con una tabla 'leads'
-  que tenga: nombre, empresa, email, linkedin_url,
-  score (integer), tier (text), stage (text),
-  created_at (timestamp). Hacele deploy."</span>
+        <div class="terminal-sim" style="margin-top:1em;">
+          <div class="terminal-bar">
+            <div class="terminal-dot red"></div>
+            <div class="terminal-dot yellow"></div>
+            <div class="terminal-dot green"></div>
+            <span class="terminal-title">Terminal — claude</span>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line"><span class="terminal-prompt">$</span> <span class="terminal-cmd">npm install -g @anthropic-ai/claude-code</span></div>
+            <div class="terminal-line"><span class="terminal-output">added 1 package in 3s</span></div>
+            <div class="terminal-line"><span class="terminal-prompt">$</span> <span class="terminal-cmd">claude</span></div>
+            <div class="terminal-line"><span class="terminal-success">✓ Claude Code v1.0.0</span></div>
+            <div class="terminal-line"><span class="terminal-prompt">></span> <span class="terminal-highlight">"Crea un proyecto en Supabase con tabla 'leads': nombre, empresa, email, score, tier, stage"</span></div>
+            <div class="terminal-line"><span class="terminal-output">Creando proyecto en Supabase...</span></div>
+            <div class="terminal-line"><span class="terminal-success">✓ Tabla 'leads' creada con 8 columnas</span></div>
+            <div class="terminal-line"><span class="terminal-success">✓ Deploy completado → https://tu-proyecto.supabase.co</span> <span class="terminal-cursor"></span></div>
+          </div>
         </div>
       </section>
 
