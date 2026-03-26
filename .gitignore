@@ -3,3 +3,4 @@
 *.rtf
 node_modules/
 .vercel/
+.vercel
