@@ -283,10 +283,10 @@
         <div class="demo-callout">
           <p><strong>Lo que vamos a hacer:</strong></p>
           <ol class="numbered-list">
-            <li>Pull deal data + call notes de un prospect</li>
+            <li>Obtener datos del deal + notas de calls de un prospect</li>
             <li>Claude Code genera el proposal completo en Markdown</li>
-            <li>Incluye pricing calculado por tier + scope mencionado en calls</li>
-            <li>Output: Markdown listo para convertir a PDF</li>
+            <li>Incluye pricing calculado por tier + alcance mencionado en calls</li>
+            <li>Salida: Markdown listo para convertir a PDF</li>
           </ol>
         </div>
         <div class="code-block mt-2">
@@ -294,8 +294,8 @@
   Pull: CRM data de Attio, call notes de los ultimos
   3 meetings, enrichment de Clay.
   Usa el pricing tier 'Growth' ($13-20k/mo).
-  Formato: Markdown con executive summary, scope,
-  timeline, pricing, y next steps."</span>
+  Formato: Markdown con resumen ejecutivo, alcance,
+  timeline, pricing, y proximos pasos."</span>
         </div>
       </section>
 
@@ -305,26 +305,26 @@
         <div class="pipeline-health mt-2">
           <div class="health-card health-green">
             <div class="health-icon">&#x1F7E2;</div>
-            <h3 style="font-size:1em; color:var(--green);">Active</h3>
-            <p class="text-small">Meeting en los ultimos 7 dias. Next steps claros. Engagement alto.</p>
+            <h3 style="font-size:1em; color:var(--green);">Activo</h3>
+            <p class="text-small">Meeting en los ultimos 7 dias. Proximos pasos claros. Engagement alto.</p>
           </div>
           <div class="health-card health-yellow">
             <div class="health-icon">&#x1F7E1;</div>
-            <h3 style="font-size:1em; color:var(--gold);">Cooling</h3>
-            <p class="text-small">Sin actividad 7-21 dias. Necesita touchpoint. Auto-reactivation sugerida.</p>
+            <h3 style="font-size:1em; color:var(--gold);">Enfriandose</h3>
+            <p class="text-small">Sin actividad 7-21 dias. Necesita touchpoint. Auto-reactivacion sugerida.</p>
           </div>
           <div class="health-card health-red">
             <div class="health-icon">&#x1F534;</div>
-            <h3 style="font-size:1em; color:var(--red);">Stale</h3>
-            <p class="text-small">21+ dias sin actividad. Reactivation sequence o close-lost review.</p>
+            <h3 style="font-size:1em; color:var(--red);">Inactivo</h3>
+            <p class="text-small">21+ dias sin actividad. Secuencia de reactivacion o revision de close-lost.</p>
           </div>
         </div>
         <div class="mt-2">
           <h3 style="font-size:0.9em;">Acciones automaticas por estado</h3>
           <ul class="dash-list">
-            <li><strong>Green:</strong> generar follow-up email post-meeting, actualizar CRM notes</li>
-            <li><strong>Yellow:</strong> enviar contenido relevante, felicitar por noticias, proponer check-in</li>
-            <li><strong>Red:</strong> trigger reactivation sequence, escalar a manager, evaluar close-lost</li>
+            <li><strong>Verde:</strong> generar email de follow-up post-meeting, actualizar notas del CRM</li>
+            <li><strong>Amarillo:</strong> enviar contenido relevante, felicitar por noticias, proponer check-in</li>
+            <li><strong>Rojo:</strong> disparar secuencia de reactivacion, escalar a manager, evaluar close-lost</li>
           </ul>
         </div>
       </section>
@@ -339,7 +339,7 @@
             <li>Clasifica cada deal: Green / Yellow / Red</li>
             <li>Para Yellow: genera touchpoint sugerido</li>
             <li>Para Red: genera reactivation sequence</li>
-            <li>Output: reporte en Slack con acciones recomendadas</li>
+            <li>Salida: reporte en Slack con acciones recomendadas</li>
           </ol>
         </div>
         <div class="code-block mt-2">
@@ -348,31 +348,31 @@
   Yellow (7-21 dias), Red (21+ dias).
   Para cada Yellow: sugiere un touchpoint.
   Para cada Red: genera una reactivation sequence de 3 emails.
-  Output como reporte en Slack."</span>
+  Salida como reporte en Slack."</span>
         </div>
       </section>
 
       <!-- SLIDE 14 — Pilar 5: Keep deals warm -->
       <section data-footer="GrowthMasters · 30x Workshop 2 · AE AI Stage">
-        <h2>Pilar 5: Keep Deals Warm + Battlecards</h2>
+        <h2>Pilar 5: Mantener Deals Calientes + Battlecards</h2>
         <div class="two-column mt-2">
           <div>
             <h3 style="font-size:0.9em;">Touchpoints automaticos</h3>
             <ul class="check-list">
-              <li>Compartir articulo relevante por industry</li>
+              <li>Compartir articulo relevante por industria</li>
               <li>Felicitar por funding round, hire, launch</li>
-              <li>Enviar case study de cliente similar</li>
+              <li>Enviar caso de exito de cliente similar</li>
               <li>Proponer catch-up call trimestral</li>
               <li>Invitar a webinar o evento</li>
             </ul>
             <p class="text-small text-muted mt-1">No es spam — es valor. Cada touchpoint tiene razon de ser basada en datos.</p>
           </div>
           <div>
-            <h3 style="font-size:0.9em;">Competitive Battlecards</h3>
+            <h3 style="font-size:0.9em;">Battlecards Competitivas</h3>
             <ul class="check-list">
-              <li>Auto-generadas desde win/loss data</li>
-              <li>Actualizadas con cada competitive mention en calls</li>
-              <li>Objection handling por competidor</li>
+              <li>Auto-generadas desde datos de win/loss</li>
+              <li>Actualizadas con cada mencion competitiva en calls</li>
+              <li>Manejo de objeciones por competidor</li>
               <li>Talk tracks: "Si mencionan X, responde Y"</li>
             </ul>
             <p class="text-small text-muted mt-1">El AI escucha tus calls y actualiza las battlecards automaticamente.</p>
@@ -382,33 +382,33 @@
 
       <!-- SLIDE 15 — CRM Automations -->
       <section data-footer="GrowthMasters · 30x Workshop 2 · AE AI Stage">
-        <h2>CRM Automations via Webhooks</h2>
+        <h2>Automatizaciones CRM via Webhooks</h2>
         <div class="ladder mt-2">
           <div class="rung">
             <div class="rung-number">1</div>
             <div>
-              <strong>Deal stage change</strong> → Generar next action automaticamente<br>
-              <span class="text-small text-muted">"Deal movio a Proposal → generar draft de proposal"</span>
+              <strong>Cambio de etapa del deal</strong> → Generar siguiente accion automaticamente<br>
+              <span class="text-small text-muted">"Deal movio a Proposal → generar borrador de proposal"</span>
             </div>
           </div>
           <div class="rung">
             <div class="rung-number">2</div>
             <div>
-              <strong>Note added</strong> → Update score + flag signals<br>
-              <span class="text-small text-muted">"AE agrego nota de meeting → extraer disclosed signals, actualizar score"</span>
+              <strong>Nota agregada</strong> → Actualizar score + marcar signals<br>
+              <span class="text-small text-muted">"AE agrego nota de meeting → extraer signals revelados, actualizar score"</span>
             </div>
           </div>
           <div class="rung">
             <div class="rung-number">3</div>
             <div>
-              <strong>Meeting completed</strong> → Generate follow-up<br>
-              <span class="text-small text-muted">"Meeting termino → generar email de follow-up con resumen y next steps"</span>
+              <strong>Meeting completado</strong> → Generar follow-up<br>
+              <span class="text-small text-muted">"Meeting termino → generar email de follow-up con resumen y proximos pasos"</span>
             </div>
           </div>
           <div class="rung active">
             <div class="rung-number">4</div>
             <div>
-              <strong>Inactivity trigger</strong> → Auto-reactivation<br>
+              <strong>Disparador de inactividad</strong> → Auto-reactivacion<br>
               <span class="text-small text-muted">"14 dias sin actividad → iniciar secuencia de reactivacion"</span>
             </div>
           </div>
@@ -440,48 +440,48 @@
           <h3>Rutina Diaria</h3>
           <ul>
             <li><strong>7:00 AM</strong> — get_todays_meetings() → generate_brief() para cada meeting</li>
-            <li><strong>8:00 AM</strong> — scan_pipeline('yellow') → generate_touchpoint() para deals cooling</li>
-            <li><strong>9:00 AM</strong> — Check post-meeting transcripts → send_followup()</li>
-            <li><strong>5:00 PM</strong> — Reporte diario en Slack: meetings prep'd, followups sent, pipeline health</li>
+            <li><strong>8:00 AM</strong> — scan_pipeline('yellow') → generate_touchpoint() para deals enfriandose</li>
+            <li><strong>9:00 AM</strong> — Revisar transcripts post-meeting → send_followup()</li>
+            <li><strong>5:00 PM</strong> — Reporte diario en Slack: meetings preparados, followups enviados, pipeline health</li>
           </ul>
         </div>
         <div class="aop-highlight mt-1">
           <h3>Rutina Semanal</h3>
           <ul>
-            <li><strong>Lunes AM</strong> — scan_pipeline('all') → full health report</li>
-            <li><strong>Miercoles</strong> — scan_pipeline('red') → reactivate_deal() para stale deals</li>
-            <li><strong>Viernes PM</strong> — generate_battlecard() updates desde calls de la semana</li>
+            <li><strong>Lunes AM</strong> — scan_pipeline('all') → reporte completo de salud</li>
+            <li><strong>Miercoles</strong> — scan_pipeline('red') → reactivate_deal() para deals inactivos</li>
+            <li><strong>Viernes PM</strong> — generate_battlecard() actualizaciones desde calls de la semana</li>
           </ul>
         </div>
       </section>
 
       <!-- SLIDE 18 — Trust Ladder -->
       <section data-footer="GrowthMasters · 30x Workshop 2 · AE AI Stage">
-        <h2>Trust Ladder del AE Agent</h2>
+        <h2>Escalera de Confianza del AE Agent</h2>
         <div class="ladder mt-2">
           <div class="rung">
             <div class="rung-number">1</div>
             <div>
-              <strong>Read-only: briefs y reportes</strong><br>
+              <strong>Solo lectura: briefs y reportes</strong><br>
               <span class="text-small text-muted">El AI genera, el humano lee. Cero riesgo. Empiezas aqui.</span>
             </div>
           </div>
           <div class="rung">
             <div class="rung-number">2</div>
             <div>
-              <strong>Draft generation: decks y proposals</strong><br>
+              <strong>Generacion de borradores: decks y proposals</strong><br>
               <span class="text-small text-muted">El AI genera borradores. El humano revisa, edita y envia.</span>
             </div>
           </div>
           <div class="rung active">
             <div class="rung-number">3</div>
             <div>
-              <strong>Auto-send: follow-ups y touchpoints</strong><br>
-              <span class="text-small text-muted">El AI envia directamente post-meeting follow-ups y warm touches. Solo despues de demostrar consistencia.</span>
+              <strong>Envio automatico: follow-ups y touchpoints</strong><br>
+              <span class="text-small text-muted">El AI envia directamente follow-ups post-meeting y toques calidos. Solo despues de demostrar consistencia.</span>
             </div>
           </div>
         </div>
-        <p class="text-center mt-2 text-small">"No es pure automation — es un AI que se gana tu confianza manejando edge cases sin romper nada."</p>
+        <p class="text-center mt-2 text-small">"No es automatizacion pura — es un AI que se gana tu confianza manejando edge cases sin romper nada."</p>
       </section>
 
       <!-- SLIDE 19 — EJERCICIO -->
@@ -513,7 +513,7 @@
             El humano se enfoca en relacion, negociacion y estrategia.<br>
             El AI hace todo lo demas.
           </p>
-          <p class="mt-2 text-small text-muted">Siguiente: Workshop 3 — Tus Calls Son Oro</p>
+          <p class="mt-2 text-small text-muted">Siguiente: Workshop 3 — Tus Calls son Oro</p>
           <div class="contact">
             Juan Felipe Campos · growthmasters.io · 30x.org
           </div>

@@ -239,7 +239,7 @@
               <li>No es ChatGPT — es un agente que actua</li>
             </ul>
           </div>
-          <div class="code-block">
+          <div class="code-block" style="white-space:pre-wrap;">
 <span class="comment"># Instalar</span>
 <span class="keyword">npm</span> install -g <span class="string">@anthropic-ai/claude-code</span>
 
@@ -249,7 +249,7 @@
 <span class="comment"># Tu primer prompt</span>
 > <span class="string">"Lee los datos de mis ultimos 10 deals
   en Attio y genera un reporte de
-  pipeline health"</span>
+  salud del pipeline"</span>
           </div>
         </div>
       </section>
@@ -265,16 +265,17 @@
             <li>Instalar Claude Code desde la terminal</li>
             <li>Configurar la API key</li>
             <li>Primer prompt: "Crea un proyecto Supabase con una tabla de leads"</li>
-            <li>Ver como genera el schema, las funciones y lo deploya</li>
+            <li>Ver como genera el schema, las funciones y le hace deploy</li>
           </ol>
         </div>
-        <div class="code-block mt-2">
+        <div class="code-block mt-2" style="white-space:pre-wrap;">
 <span class="keyword">npm</span> install -g <span class="string">@anthropic-ai/claude-code</span>
 <span class="keyword">claude</span>
+
 > <span class="string">"Crea un proyecto nuevo en Supabase con una tabla 'leads'
   que tenga: nombre, empresa, email, linkedin_url,
   score (integer), tier (text), stage (text),
-  created_at (timestamp). Deployalo."</span>
+  created_at (timestamp). Hacele deploy."</span>
         </div>
       </section>
 
@@ -416,21 +417,21 @@
             <div class="rung-number">2</div>
             <div>
               <strong>Individual Tiering</strong><br>
-              <span class="text-small text-muted">Dentro de cada cuenta: es la persona correcta? Seniority, departamento, buying authority.</span>
+              <span class="text-small text-muted">Dentro de cada cuenta: es la persona correcta? Seniority, departamento, autoridad de compra.</span>
             </div>
           </div>
           <div class="rung">
             <div class="rung-number">3</div>
             <div>
               <strong>Behavioral Scoring</strong><br>
-              <span class="text-small text-muted">Intent signals: que estan haciendo? Descargaron contenido? Visitaron pricing?</span>
+              <span class="text-small text-muted">Senales de intencion: que estan haciendo? Descargaron contenido? Visitaron la pagina de precios?</span>
             </div>
           </div>
           <div class="rung active">
             <div class="rung-number">4</div>
             <div>
-              <strong>Disclosed Signals + Custom Messaging</strong><br>
-              <span class="text-small text-muted">Solo aqui inviertes en messaging personalizado por cuenta. Necesitas el scoring robusto primero.</span>
+              <strong>Senales Declaradas + Mensajes Personalizados</strong><br>
+              <span class="text-small text-muted">Solo aqui inviertes en mensajes personalizados por cuenta. Necesitas el scoring robusto primero.</span>
             </div>
           </div>
         </div>
@@ -445,15 +446,15 @@
         <div class="three-column mt-2">
           <div class="card card-navy" style="text-align:center;">
             <h3 style="font-size:1.5em; color:var(--gold);">Audience</h3>
-            <p style="font-size:0.8em;">A quien le vendes? Se construye en Clay, tu CRM, LinkedIn Ads. Donde esta tu buyer?</p>
+            <p style="font-size:0.8em;">A quien le vendes? Se construye en Clay, tu CRM, LinkedIn Ads. Donde esta tu comprador?</p>
           </div>
           <div class="card card-navy" style="text-align:center;">
             <h3 style="font-size:1.5em; color:var(--gold);">Offer</h3>
-            <p style="font-size:0.8em;">Que le ofreces? Demo, lead magnet, webinar, gated content, free trial? Transaccional o nurture?</p>
+            <p style="font-size:0.8em;">Que le ofreces? Demo, lead magnet, webinar, contenido cerrado, prueba gratis? Transaccional o nurture?</p>
           </div>
           <div class="card card-navy" style="text-align:center;">
             <h3 style="font-size:1.5em; color:var(--gold);">Mechanism</h3>
-            <p style="font-size:0.8em;">Como lo entregas? Sequencer, ads, LinkedIn, email, SMS? Que canal domina tu ICP?</p>
+            <p style="font-size:0.8em;">Como lo entregas? Secuenciador, ads, LinkedIn, email, SMS? Que canal domina tu ICP?</p>
           </div>
         </div>
         <p class="text-center mt-2 text-small">"No estoy casado con un canal. Estoy casado con el growth. Trabajamos hacia atras desde ahi."</p>
@@ -465,17 +466,17 @@
       <section data-footer="GrowthMasters · 30x Workshop · Fundamentos">
         <h2>EJERCICIO: Configura tu entorno</h2>
         <div class="hands-on">
-          <p><strong>Checklist — necesitas esto para los proximos workshops:</strong></p>
+          <p><strong>Lista de verificacion — necesitas esto para los proximos workshops:</strong></p>
           <ul class="check-list">
             <li>Claude Code instalado: <code>npm install -g @anthropic-ai/claude-code</code></li>
-            <li>Anthropic API key configurada</li>
+            <li>API key de Anthropic configurada</li>
             <li>Cuenta de Supabase (free tier): <code>supabase.com</code></li>
             <li>Cuenta de Vercel (free tier): <code>vercel.com</code></li>
-            <li>CRM trial activo: Attio o Clarify</li>
-            <li>Clay account (free tier): <code>clay.com</code></li>
+            <li>Prueba de CRM activa: Attio o Clarify</li>
+            <li>Cuenta de Clay (free tier): <code>clay.com</code></li>
           </ul>
         </div>
-        <div class="code-block mt-2">
+        <div class="code-block mt-2" style="white-space:pre-wrap;">
 <span class="comment"># Verifica tu setup</span>
 <span class="keyword">claude</span> <span class="flag">--version</span>
 <span class="keyword">supabase</span> <span class="flag">--version</span>
@@ -492,8 +493,8 @@
         <div class="closing-slide">
           <h2>"Es un gran momento<br>para <span class="highlight">construir.</span>"</h2>
           <p class="mt-2" style="font-size:0.9em; color:#777; max-width:20em;">
-            Build the tool. Write the AOP.<br>
-            Expose via MCP. Let AI run it.
+            Construir la herramienta. Escribir el AOP.<br>
+            Exponer via MCP. Dejar que el AI lo ejecute.
           </p>
           <div class="contact">
             Juan Felipe Campos · growthmasters.io<br>

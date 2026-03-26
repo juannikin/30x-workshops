@@ -32,23 +32,23 @@
         <h2>La mina de oro en cada call</h2>
         <div class="three-column mt-2">
           <div class="card">
-            <h3 style="font-size:0.9em;">Para Sales</h3>
+            <h3 style="font-size:0.9em;">Para Ventas</h3>
             <ul class="check-list">
               <li>Pain points en palabras del prospect</li>
               <li>Objeciones recurrentes</li>
-              <li>Buying signals + disclosed intent</li>
-              <li>Competitive mentions</li>
-              <li>Budget, timeline, decision criteria</li>
+              <li>Buying signals + intencion revelada</li>
+              <li>Menciones de competidores</li>
+              <li>Presupuesto, timeline, criterios de decision</li>
             </ul>
           </div>
           <div class="card">
             <h3 style="font-size:0.9em;">Para Marketing</h3>
             <ul class="check-list">
               <li>Lenguaje real del ICP</li>
-              <li>Feature requests frecuentes</li>
-              <li>Temas recurrentes → content ideas</li>
+              <li>Solicitudes de features frecuentes</li>
+              <li>Temas recurrentes → ideas de contenido</li>
               <li>Testimoniales espontaneos</li>
-              <li>Messaging que resuena vs que no</li>
+              <li>Mensajes que resuenan vs que no</li>
             </ul>
           </div>
           <div class="card">
@@ -57,7 +57,7 @@
               <li>Jobs-to-be-done reales</li>
               <li>Workflows actuales del usuario</li>
               <li>Integraciones que piden</li>
-              <li>Friction points con el producto</li>
+              <li>Puntos de friccion con el producto</li>
               <li>Comparaciones con competidores</li>
             </ul>
           </div>
@@ -72,23 +72,23 @@
           <div class="arrow">→</div>
           <div class="step step-highlight">Claude Code</div>
           <div class="arrow">→</div>
-          <div class="step">Content Router</div>
+          <div class="step">Enrutador de Contenido</div>
         </div>
         <div class="mt-3" style="display:flex; justify-content:center; gap:1em; flex-wrap:wrap;">
           <div class="card" style="flex:1; min-width:150px; text-align:center; padding:1em;">
-            <strong>Decks</strong><br><span class="text-small text-muted">Sales presentations</span>
+            <strong>Decks</strong><br><span class="text-small text-muted">Presentaciones de ventas</span>
           </div>
           <div class="card" style="flex:1; min-width:150px; text-align:center; padding:1em;">
             <strong>Landing Pages</strong><br><span class="text-small text-muted">Con lenguaje del ICP</span>
           </div>
           <div class="card" style="flex:1; min-width:150px; text-align:center; padding:1em;">
-            <strong>LinkedIn Posts</strong><br><span class="text-small text-muted">Thought leadership</span>
+            <strong>LinkedIn Posts</strong><br><span class="text-small text-muted">Liderazgo de pensamiento</span>
           </div>
           <div class="card" style="flex:1; min-width:150px; text-align:center; padding:1em;">
             <strong>Ad Copy</strong><br><span class="text-small text-muted">200+ ads en 72h</span>
           </div>
           <div class="card" style="flex:1; min-width:150px; text-align:center; padding:1em;">
-            <strong>CRM Updates</strong><br><span class="text-small text-muted">Sentiment, signals</span>
+            <strong>CRM Updates</strong><br><span class="text-small text-muted">Sentimiento, signals</span>
           </div>
         </div>
         <p class="text-center mt-2">
@@ -109,16 +109,16 @@
             <h3 style="font-size:0.9em;">Lo que extraemos</h3>
             <ol class="numbered-list">
               <li><strong>Decisiones:</strong> que se acordo?</li>
-              <li><strong>Action items:</strong> quien hace que y para cuando?</li>
+              <li><strong>Tareas pendientes:</strong> quien hace que y para cuando?</li>
               <li><strong>Pain points:</strong> que duele? En sus palabras.</li>
               <li><strong>Objeciones:</strong> que los detiene?</li>
               <li><strong>Buying signals:</strong> budget, timeline, urgency</li>
-              <li><strong>Competitor mentions:</strong> que mas evaluan?</li>
-              <li><strong>Key quotes:</strong> frases textuales para content</li>
+              <li><strong>Menciones de competidores:</strong> que mas evaluan?</li>
+              <li><strong>Citas clave:</strong> frases textuales para contenido</li>
             </ol>
           </div>
           <div>
-            <h3 style="font-size:0.9em;">Output: JSON estructurado</h3>
+            <h3 style="font-size:0.9em;">Salida: JSON estructurado</h3>
             <div class="code-block">
 {
   <span class="string">"decisions"</span>: [...],
@@ -146,7 +146,7 @@
           <ol class="numbered-list">
             <li>Tomar un transcript real de una call de ventas</li>
             <li>Claude Code lo procesa y extrae insights</li>
-            <li>Output: JSON con pain points, objections, buying signals, key quotes</li>
+            <li>Salida: JSON con pain points, objeciones, buying signals, citas clave</li>
             <li>Estos datos alimentan todo lo que viene despues</li>
           </ol>
         </div>
@@ -155,8 +155,8 @@
   Extrae: decisiones, action items, pain points
   (en las palabras exactas del prospect),
   objeciones, buying signals (budget, timeline,
-  urgency), competitor mentions, y key quotes
-  para usar en content. Output como JSON."</span>
+  urgency), menciones de competidores, y citas clave
+  para usar en contenido. Salida como JSON."</span>
         </div>
       </section>
 
@@ -171,10 +171,10 @@
             <h3 style="font-size:0.9em;">Que cambia vs un deck generico?</h3>
             <ul class="check-list">
               <li>Pain points en las palabras del prospect</li>
-              <li>Solution framed around their specific challenges</li>
-              <li>Case study matched por industry + pain</li>
-              <li>Pricing aligned con budget disclosed</li>
-              <li>Next steps basados en lo que acordaron</li>
+              <li>Solucion enmarcada en sus desafios especificos</li>
+              <li>Caso de exito emparejado por industria + dolor</li>
+              <li>Pricing alineado con presupuesto revelado</li>
+              <li>Proximos pasos basados en lo que acordaron</li>
             </ul>
           </div>
           <div>
@@ -182,7 +182,7 @@
             <div class="flow" style="flex-direction:column; align-items:stretch;">
               <div class="step" style="text-align:center;">Transcript insights (JSON)</div>
               <div class="step" style="text-align:center;">Template deck (Reveal.js)</div>
-              <div class="step step-highlight" style="text-align:center;">Custom deck deployed</div>
+              <div class="step step-highlight" style="text-align:center;">Deck personalizado deployed</div>
             </div>
           </div>
         </div>
@@ -195,17 +195,17 @@
           <p><strong>Lo que vamos a hacer:</strong></p>
           <ol class="numbered-list">
             <li>Tomar los insights extraidos del demo anterior</li>
-            <li>Claude Code genera 5 slides: Challenge, Approach, Case Study, Investment, Next Steps</li>
+            <li>Claude Code genera 5 slides: Desafio, Enfoque, Caso de Exito, Inversion, Proximos Pasos</li>
             <li>Cada slide usa lenguaje del prospect</li>
             <li>Deploy automatico en Vercel con URL unica</li>
           </ol>
         </div>
         <div class="code-block mt-2">
 > <span class="string">"Usa los insights del transcript para generar un deck
-  de 5 slides en Reveal.js. Slide 1: el challenge del
-  prospect (usa sus palabras). Slide 2: nuestro approach.
-  Slide 3: case study relevante. Slide 4: investment.
-  Slide 5: next steps. Deploy en Vercel."</span>
+  de 5 slides en Reveal.js. Slide 1: el desafio del
+  prospect (usa sus palabras). Slide 2: nuestro enfoque.
+  Slide 3: caso de exito relevante. Slide 4: inversion.
+  Slide 5: proximos pasos. Deploy en Vercel."</span>
         </div>
       </section>
 
@@ -217,11 +217,11 @@
           <div>
             <h3 style="font-size:0.9em;">Estructura de la landing</h3>
             <ol class="numbered-list">
-              <li><strong>Hero:</strong> headline from top pain point</li>
-              <li><strong>Problem:</strong> 3 pain points del ICP</li>
-              <li><strong>Solution:</strong> how you solve each one</li>
-              <li><strong>Social proof:</strong> stats + testimoniales</li>
-              <li><strong>CTA:</strong> book a call / start free</li>
+              <li><strong>Hero:</strong> titular desde el pain point principal</li>
+              <li><strong>Problema:</strong> 3 pain points del ICP</li>
+              <li><strong>Solucion:</strong> como resuelves cada uno</li>
+              <li><strong>Prueba social:</strong> estadisticas + testimoniales</li>
+              <li><strong>CTA:</strong> agendar una call / empezar gratis</li>
             </ol>
           </div>
           <div>
@@ -245,7 +245,7 @@
           <ol class="numbered-list">
             <li>Tomar pain points y objeciones del transcript</li>
             <li>Claude Code genera HTML completo: hero, problem, solution, CTA</li>
-            <li>Styling responsive out of the box</li>
+            <li>Styling responsive listo para usar</li>
             <li>Deploy en Vercel — live URL en 60 segundos</li>
           </ol>
         </div>
@@ -253,7 +253,7 @@
 > <span class="string">"Genera una landing page HTML desde los insights
   del transcript. Hero: top pain point como headline.
   3 secciones de problema/solucion. Social proof section.
-  CTA: 'Book a demo'. Styling moderno, responsive.
+  CTA: 'Agenda un demo'. Styling moderno, responsive.
   Deploy en Vercel."</span>
         </div>
       </section>
@@ -264,22 +264,22 @@
         <p class="text-muted mb-2">Asi generamos 500M+ views — escuchando al mercado</p>
         <div class="two-column">
           <div>
-            <h3 style="font-size:0.9em;">El Content Engine</h3>
+            <h3 style="font-size:0.9em;">El Motor de Contenido</h3>
             <div class="flow" style="flex-direction:column; align-items:stretch;">
               <div class="step" style="text-align:center;">5 calls esta semana</div>
               <div class="step" style="text-align:center;">Identificar temas recurrentes</div>
               <div class="step" style="text-align:center;">Extraer insights + quotes</div>
-              <div class="step step-highlight" style="text-align:center;">3 LinkedIn posts drafted</div>
+              <div class="step step-highlight" style="text-align:center;">3 LinkedIn posts redactados</div>
               <div class="step" style="text-align:center;">Humano edita → publica</div>
             </div>
           </div>
           <div>
             <h3 style="font-size:0.9em;">Tipos de posts que salen</h3>
             <ul class="check-list">
-              <li><strong>Pattern post:</strong> "Hable con 5 VPs esta semana y todos dijeron lo mismo..."</li>
-              <li><strong>Contrarian take:</strong> insight que contradice wisdom convencional</li>
-              <li><strong>Framework post:</strong> problema recurrente → solucion sistematizada</li>
-              <li><strong>Story post:</strong> anecdota de una call (anonymized)</li>
+              <li><strong>Post de patron:</strong> "Hable con 5 VPs esta semana y todos dijeron lo mismo..."</li>
+              <li><strong>Toma contraria:</strong> insight que contradice la sabiduria convencional</li>
+              <li><strong>Post de framework:</strong> problema recurrente → solucion sistematizada</li>
+              <li><strong>Post de historia:</strong> anecdota de una call (anonimizada)</li>
             </ul>
             <p class="text-small text-muted mt-1">Cadencia: 3 posts/semana. El AI genera, el humano edita y publica.</p>
           </div>
@@ -295,7 +295,7 @@
             <li>Alimentar 5 transcripts (reales o de muestra) a Claude Code</li>
             <li>Identificar los 3 temas mas recurrentes</li>
             <li>Generar un post por tema: hook, body, CTA</li>
-            <li>Output: 3 posts listos para editar y publicar</li>
+            <li>Salida: 3 posts listos para editar y publicar</li>
           </ol>
         </div>
         <div class="code-block mt-2">
@@ -305,23 +305,23 @@
   - Hook (primera linea que capture atencion)
   - Body (insight + ejemplo anonymized)
   - CTA (pregunta que genere engagement)
-  Tone: profesional pero conversacional."</span>
+  Tono: profesional pero conversacional."</span>
         </div>
       </section>
 
       <!-- SLIDE 13 — Paso 5: CRM Intelligence -->
       <section data-footer="GrowthMasters · 30x Workshop 3 · Transcripts = Oro">
         <h2>Paso 5: CRM Intelligence Post-Call</h2>
-        <p class="text-muted mb-2">Cada call actualiza automaticamente el deal record</p>
+        <p class="text-muted mb-2">Cada call actualiza automaticamente el registro del deal</p>
         <div class="two-column">
           <div>
             <h3 style="font-size:0.9em;">Que se actualiza</h3>
             <ul class="check-list">
-              <li><strong>Sentiment score:</strong> positive / neutral / at-risk</li>
-              <li><strong>Next steps:</strong> extraidos de la call</li>
-              <li><strong>Competitive mentions:</strong> que estan evaluando</li>
+              <li><strong>Puntaje de sentimiento:</strong> positivo / neutral / en riesgo</li>
+              <li><strong>Proximos pasos:</strong> extraidos de la call</li>
+              <li><strong>Menciones competitivas:</strong> que estan evaluando</li>
               <li><strong>Champion ID:</strong> quien nos apoya internamente</li>
-              <li><strong>Disclosed signals:</strong> budget, timeline, decision criteria</li>
+              <li><strong>Signals revelados:</strong> presupuesto, timeline, criterios de decision</li>
               <li><strong>Deal health:</strong> re-clasificar Green/Yellow/Red</li>
             </ul>
           </div>
@@ -330,8 +330,8 @@
             <div class="flow" style="flex-direction:column; align-items:stretch;">
               <div class="step" style="text-align:center;">Call termina → Granola genera transcript</div>
               <div class="step" style="text-align:center;">Claude Code extrae insights</div>
-              <div class="step" style="text-align:center;">Auto-update campos en Attio/Clarify</div>
-              <div class="step step-highlight" style="text-align:center;">Notificacion: "Deal updated. New signals detected."</div>
+              <div class="step" style="text-align:center;">Auto-actualizacion de campos en Attio/Clarify</div>
+              <div class="step step-highlight" style="text-align:center;">Notificacion: "Deal actualizado. Nuevos signals detectados."</div>
             </div>
           </div>
         </div>
@@ -344,9 +344,9 @@
           <p><strong>Lo que vamos a hacer:</strong></p>
           <ol class="numbered-list">
             <li>Tomar el transcript procesado</li>
-            <li>Claude Code identifica: sentiment, next steps, competitor mentions, champion</li>
-            <li>Auto-update del deal record en Attio/Clarify</li>
-            <li>Re-clasificar deal health basado en disclosed signals</li>
+            <li>Claude Code identifica: sentimiento, proximos pasos, menciones de competidores, champion</li>
+            <li>Auto-actualizacion del registro del deal en Attio/Clarify</li>
+            <li>Re-clasificar deal health basado en signals revelados</li>
           </ol>
         </div>
         <div class="code-block mt-2">
@@ -373,30 +373,30 @@
           <div class="mcp-tool">update_crm_from_call(deal_id, insights)</div>
           <div class="mcp-tool">generate_ad_copy(insights, platforms[])</div>
         </div>
-        <p class="text-center mt-2 text-small text-muted">7 tools. Un transcript entra, multiples outputs salen. El AOP orquesta todo.</p>
+        <p class="text-center mt-2 text-small text-muted">7 tools. Un transcript entra, multiples salidas salen. El AOP orquesta todo.</p>
       </section>
 
       <!-- SLIDE 16 — AOP del Transcript Agent -->
       <section data-footer="GrowthMasters · 30x Workshop 3 · Transcripts = Oro">
         <h2>El AOP del Transcript Agent</h2>
         <div class="aop-highlight mt-1">
-          <h3>Post-Call Routine (automatica)</h3>
+          <h3>Rutina Post-Call (automatica)</h3>
           <ul>
             <li><strong>T+0 min</strong> — ingest_transcript() desde Granola</li>
             <li><strong>T+1 min</strong> — extract_insights() → JSON estructurado</li>
-            <li><strong>T+2 min</strong> — update_crm_from_call() → deal record actualizado</li>
-            <li><strong>T+3 min</strong> — Notificar en Slack: resumen + action items + signals</li>
+            <li><strong>T+2 min</strong> — update_crm_from_call() → registro del deal actualizado</li>
+            <li><strong>T+3 min</strong> — Notificar en Slack: resumen + tareas pendientes + signals</li>
           </ul>
         </div>
         <div class="aop-highlight mt-1">
-          <h3>Content Cadence (semanal)</h3>
+          <h3>Cadencia de Contenido (semanal)</h3>
           <ul>
             <li><strong>Viernes PM</strong> — Batch: 5 transcripts de la semana → generate_social_posts(3)</li>
             <li><strong>Mensual</strong> — Insights acumulados → generate_landing_page() refresh</li>
             <li><strong>Trimestral</strong> — Insights acumulados → generate_ad_copy() para nuevas campanas</li>
           </ul>
         </div>
-        <p class="text-center mt-1 text-small">Escalacion: si sentiment es "at-risk" → notificar manager. Si competitive mention es nueva → update battlecard.</p>
+        <p class="text-center mt-1 text-small">Escalacion: si sentimiento es "en riesgo" → notificar manager. Si mencion competitiva es nueva → actualizar battlecard.</p>
       </section>
 
       <!-- SLIDE 17 — EJERCICIO -->
@@ -407,7 +407,7 @@
           <ol class="numbered-list">
             <li>Toma un transcript real (Granola, Gong, o el sample que tenemos)</li>
             <li>Pide a Claude Code que extraiga insights como JSON</li>
-            <li>Genera uno de estos outputs (elige tu favorito):
+            <li>Genera una de estas salidas (elige tu favorita):
               <ul style="font-size:0.9em; margin-top:0.3em;">
                 <li>a) Mini-deck de 5 slides</li>
                 <li>b) Landing page deployed en Vercel</li>
@@ -427,20 +427,20 @@
           <div class="flow mt-2" style="justify-content:center; flex-wrap:wrap;">
             <div class="step">Calls</div>
             <div class="arrow">→</div>
-            <div class="step">Data</div>
+            <div class="step">Datos</div>
             <div class="arrow">→</div>
-            <div class="step">Content</div>
+            <div class="step">Contenido</div>
             <div class="arrow">→</div>
             <div class="step">Pipeline</div>
             <div class="arrow">→</div>
             <div class="step step-highlight">Mas Calls</div>
           </div>
           <p class="mt-3" style="font-size:1em; color:var(--navy); font-weight:600;">
-            Build the tool. Write the AOP.<br>
-            Expose via MCP. Let AI run it.
+            Construye la herramienta. Escribe el AOP.<br>
+            Exponlo via MCP. Deja que el AI lo ejecute.
           </p>
           <p class="mt-2 text-small text-muted" style="max-width:20em;">
-            Assess → Decide → Act → Adjust → Repeat
+            Evaluar → Decidir → Actuar → Ajustar → Repetir
           </p>
           <div class="contact">
             Juan Felipe Campos · growthmasters.io · 30x.org
