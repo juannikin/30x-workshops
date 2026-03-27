@@ -354,6 +354,62 @@
         <aside class="notes">Click para revelar el panel "AI-First CRM". Preguntar a la audiencia: "Cuantos de ustedes usan Salesforce o HubSpot?" Luego explicar por que NO para esto — el AI no puede operar libremente en un CRM legacy. Mostrar las imagenes de Attio y Clarify. 2 min.</aside>
       </section>
 
+      <!-- SLIDE: CRM Web Search Agent Animation -->
+      <section data-footer="GrowthMasters · 30x Workshop · Fundamentos">
+        <h2>Asi trabaja un agente de web search en tu CRM</h2>
+        <p class="text-muted" style="font-size:0.7em; margin-bottom:0.5em;">Prompt: "Para cada empresa, busca en la web y evalua el fit tecnografico en una escala de 1-5 con razonamiento"</p>
+        <table class="agent-table">
+          <thead>
+            <tr>
+              <th>Empresa</th>
+              <th>Headcount</th>
+              <th>Stack</th>
+              <th class="agent-col">Fit Tecnografico</th>
+              <th class="agent-col">Hiring Signal</th>
+              <th>Score Final</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Rappi</strong></td>
+              <td>5,200</td>
+              <td>React, AWS, Kafka</td>
+              <td><span class="agent-score s4">4/5</span><span class="agent-reasoning">Usa React + AWS, sin CRM competidor</span></td>
+              <td><span class="agent-score s5">5/5</span><span class="agent-reasoning">12 roles abiertos en sales/ops</span></td>
+              <td><span class="enrich-score tier-a" style="animation-delay:2s;">92 · A</span></td>
+            </tr>
+            <tr>
+              <td><strong>Kavak</strong></td>
+              <td>3,400</td>
+              <td>Python, GCP, Redis</td>
+              <td><span class="agent-score s3">3/5</span><span class="agent-reasoning">Stack propio, integracion parcial</span></td>
+              <td><span class="agent-score s3">3/5</span><span class="agent-reasoning">3 roles, crecimiento moderado</span></td>
+              <td><span class="enrich-score tier-b" style="animation-delay:2s;">76 · B</span></td>
+            </tr>
+            <tr>
+              <td><strong>Clara</strong></td>
+              <td>600</td>
+              <td>React, PostgreSQL</td>
+              <td><span class="agent-score s4">4/5</span><span class="agent-reasoning">Stack moderno, compatible con integraciones</span></td>
+              <td><span class="agent-score s4">4/5</span><span class="agent-reasoning">5 roles abiertos, empresa en crecimiento</span></td>
+              <td><span class="enrich-score tier-b" style="animation-delay:2s;">79 · B</span></td>
+            </tr>
+            <tr>
+              <td><strong>Platzi</strong></td>
+              <td>800</td>
+              <td>Next.js, AWS</td>
+              <td><span class="agent-score s2">2/5</span><span class="agent-reasoning">Sector educacion, bajo fit B2B SaaS</span></td>
+              <td><span class="agent-score s2">2/5</span><span class="agent-reasoning">No hiring en sales</span></td>
+              <td><span class="enrich-score tier-c" style="animation-delay:2s;">61 · C</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="agent-formula">
+          Fit Tecnografico (×0.3) + Hiring Signal (×0.25) + Account Size (×0.2) + Geo (×0.15) + Growth (×0.1) = <span class="formula-result">Score → Tier</span>
+        </div>
+        <aside class="notes">Dejar que la tabla se anime. "Fijense en las columnas naranjas — esas son las que el agente AI llena automaticamente. Busca en la web, evalua, y da un puntaje con razonamiento. La formula de pesos genera el score final y el tier." 2 min.</aside>
+      </section>
+
       <!-- ============================================
            SLIDE 10 — MCP
            ============================================ -->
